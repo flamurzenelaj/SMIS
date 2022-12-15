@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "f7kuUK2kToG/KnAqyRlaniRVpBmUa4oTYSvXMAvABAU=",
+  "Source": "SMIS_API",
+  "BasePath": "_content/SMIS_API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
