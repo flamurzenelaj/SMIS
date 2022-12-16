@@ -1,8 +1,9 @@
+import SideNavBar from "./SideNavBar/SideNavBar";
 
 function App() {
   return (
-    <div>
-      <h1>SMIS</h1>
+    <div className="App">
+      <SideNavBar />
     </div>
   );
 }
