@@ -4,30 +4,29 @@
 
 namespace SMIS_API.Migrations
 {
-    public partial class initalcreate : Migration
+    public partial class DepartmentMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "StudentTest",
+                name: "Department",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Age = table.Column<int>(type: "int", nullable: false)
+                    DepartmentName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    NumberOfStudents = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_StudentTest", x => x.Id);
+                    table.PrimaryKey("PK_Department", x => x.Id);
                 });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "StudentTest");
+                name: "Department");
         }
     }
 }

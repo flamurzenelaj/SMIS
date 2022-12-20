@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Wmo3F4Y/ZDzXFOw3iuqLtf08kxflXtY+WmwsPgrXu8Y7h8ErMZOpaQVC7s24DeE8ZCwqith/nbdc9obIKI3W0g==",
+  "dgSpecHash": "H0KULYKwkK28u40I2IvxwAeHdzQOx3b7YczWeaOHSpDAE5QCcxix88GkBExJheM0tLJ1ffXlZHE/sPspAY/J7g==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\Backend\\SMIS_API\\SMIS_API.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

@@ -1,31 +1,44 @@
 import React from 'react';
-import "./SideNavBar.css";
+import { useState } from 'react';
+import "./Sidebar.css";
+import { Link } from 'react-router-dom';
 
-const SideNavBar = () => {
+const Sidebar = () => {
     const [isExpended, setExpendState] = useState(false);
     const menuItems = [
         {
             text: "Dashboard",
             icon: "icons/grid.svg",
+            link: "/",
+            alt: "dashboard",
         },
         {
-            text: "Admin Profile",
-            icon: "icons/user.svg",
+            text: "Students",
+            icon: "icons/user-graduate.svg",
+            link: "/students",
+            alt: "students",
         },
         {
-            text: "Messages",
-            icon: "icons/message.svg",
+            text: "Teachers",
+            icon: "icons/teacher.svg",
+            link: "/teachers",
+            alt: "teachers",
         },
         {
-            text: "Analytics",
-            icon: "icons/pie-chart.svg",
+            text: "Departments",
+            icon: "icons/departments.svg",
+            link: "/departments",
+            alt: "departments",
         },
         {
-            text: "Settings",
-            icon: "icons/settings.svg",
+            text: "Subjects",
+            icon: "icons/subjects.svg",
+            link: "/subjects",
+            alt: "subjects",
         },
     ];
     return (
+        <div className={isExpended ? "sidebar-relative" : "sidebar-relative sidebar-relative-NX"}>
         <div className={isExpended ? "side-nav-container" : "side-nav-container side-nav-container-NX"}>
             <div className="nav-upper">
                 <div className="nav-heading">
@@ -45,26 +58,17 @@ const SideNavBar = () => {
                         <span></span>
                     </button>
                 </div>
-                <div className="nav-menu">{menuItems.map(({ text, icon }) => <a href="#" className={isExpended ? "menu-item" : "menu-item menu-item-NX"}>
-                    <img src={icon} alt="" srcset="" />
+                <div className="nav-menu">{menuItems.map(({ text, icon, link, alt }) => <Link key={text} to={link} className={isExpended ? "menu-item" : "menu-item menu-item-NX"}>
+                    <img src={icon} alt={alt} />
                     {isExpended && <p>{text}</p>}
                     {!isExpended && <div className="tooltip">{text}</div>}
-                </a>
+                </Link>
                 )}
                 </div>
             </div>
-            <div className="nav-footer">
-                {isExpended && (<div className="nav-details">
-                    <img src="icons/admin-avatar.svg" alt="" srcset="" />
-                    <div className="nav-footer-info">
-                        <p className="nav-footer-user-name">SMIS</p>
-                        <p className="nav-footer-user-position">Teacher</p>
-                    </div>
-                </div>)}
-                <img className="logout-icon" src="icons/logout.svg" alt="" srcset="" />
-            </div>
         </div >
+        </div>
     );
 };
 
-export default SideNavBar;
+export default Sidebar;

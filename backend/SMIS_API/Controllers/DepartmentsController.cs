@@ -12,47 +12,47 @@ namespace SMIS_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentTestsController : ControllerBase
+    public class DepartmentsController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
 
-        public StudentTestsController(ApplicationDbContext context)
+        public DepartmentsController(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/StudentTests
+        // GET: api/Departments
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<StudentTest>>> GetStudentTest()
+        public async Task<ActionResult<IEnumerable<Department>>> GetDepartment()
         {
-            return await _context.StudentTest.ToListAsync();
+            return await _context.Department.ToListAsync();
         }
 
-        // GET: api/StudentTests/5
+        // GET: api/Departments/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<StudentTest>> GetStudentTest(int id)
+        public async Task<ActionResult<Department>> GetDepartment(int id)
         {
-            var studentTest = await _context.StudentTest.FindAsync(id);
+            var department = await _context.Department.FindAsync(id);
 
-            if (studentTest == null)
+            if (department == null)
             {
                 return NotFound();
             }
 
-            return studentTest;
+            return department;
         }
 
-        // PUT: api/StudentTests/5
+        // PUT: api/Departments/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudentTest(int id, StudentTest studentTest)
+        public async Task<IActionResult> PutDepartment(int id, Department department)
         {
-            if (id != studentTest.Id)
+            if (id != department.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(studentTest).State = EntityState.Modified;
+            _context.Entry(department).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace SMIS_API.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!StudentTestExists(id))
+                if (!DepartmentExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace SMIS_API.Controllers
             return NoContent();
         }
 
-        // POST: api/StudentTests
+        // POST: api/Departments
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<StudentTest>> PostStudentTest(StudentTest studentTest)
+        public async Task<ActionResult<Department>> PostDepartment(Department department)
         {
-            _context.StudentTest.Add(studentTest);
+            _context.Department.Add(department);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetStudentTest", new { id = studentTest.Id }, studentTest);
+            return CreatedAtAction("GetDepartment", new { id = department.Id }, department);
         }
 
-        // DELETE: api/StudentTests/5
+        // DELETE: api/Departments/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudentTest(int id)
+        public async Task<IActionResult> DeleteDepartment(int id)
         {
-            var studentTest = await _context.StudentTest.FindAsync(id);
-            if (studentTest == null)
+            var department = await _context.Department.FindAsync(id);
+            if (department == null)
             {
                 return NotFound();
             }
 
-            _context.StudentTest.Remove(studentTest);
+            _context.Department.Remove(department);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool StudentTestExists(int id)
+        private bool DepartmentExists(int id)
         {
-            return _context.StudentTest.Any(e => e.Id == id);
+            return _context.Department.Any(e => e.Id == id);
         }
     }
 }

@@ -1,0 +1,13 @@
+.dashboard-container {
+  width: 100%;
+  height: 100vh;
+}
+
+header {
+  color: var(--light);
+  height: 5rem;
+  background-color: azure;
+  display: flex;
+  justify-content: center;
+  background-color: var(--dark);
+}
