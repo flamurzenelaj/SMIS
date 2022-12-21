@@ -55,3 +55,35 @@
     cursor: pointer;
 }
 
+/* Create Form */
+
+.form{
+    border: 1px solid gray;
+    padding: 1.5rem;
+    font-size: 1.2rem;
+    box-sizing: border-box;
+    font-weight: bold;
+    margin: 3rem;
+}
+
+.form .form-details{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.form-details .form-input{
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    width: 45%;
+}
+
+.form-input label{
+    margin-bottom: 0.5rem;
+}
+
+.form-input input{
+    height: 2rem;
+}
+

@@ -38,8 +38,8 @@ namespace SMIS_API.Migrations
                     b.Property<int>("NumberOfStudents")
                         .HasColumnType("int");
 
-                    b.Property<int>("StartDate")
-                        .HasColumnType("int");
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

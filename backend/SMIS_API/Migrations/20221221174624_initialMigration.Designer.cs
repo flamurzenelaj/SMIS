@@ -11,8 +11,8 @@ using SMIS_API.Data;
 namespace SMIS_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221221091001_initial")]
-    partial class initial
+    [Migration("20221221174624_initialMigration")]
+    partial class initialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,8 +40,8 @@ namespace SMIS_API.Migrations
                     b.Property<int>("NumberOfStudents")
                         .HasColumnType("int");
 
-                    b.Property<int>("StartDate")
-                        .HasColumnType("int");
+                    b.Property<string>("StartDate")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
