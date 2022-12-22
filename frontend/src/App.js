@@ -6,6 +6,7 @@ import Student from "./Pages/Student/Student.jsx";
 import Teacher from "./Pages/Teacher/Teacher";
 import Subject from "./Pages/Subject/Subject.jsx";
 import CreateDepartment from "./Pages/Department/CreateDepartment";
+import CreateStudent from "./Pages/Student/CreateStudent";
 
 
 
@@ -13,16 +14,17 @@ function App() {
   return (
     <Router>
       <div className="page-container">
-      <Sidebar />
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
-        <Route path="/students" element={<Student />} />
-        <Route path="/teachers" element={<Teacher />} />
-        <Route path="/departments" element={<Department />} />
-        <Route path="/create-department" element={<CreateDepartment />} />
-        <Route path="/subjects" element={<Subject />} />
+        <Sidebar />
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/students" element={<Student />} />
+          <Route path="/teachers" element={<Teacher />} />
+          <Route path="/departments" element={<Department />} />
+          <Route path="/create-department" element={<CreateDepartment />} />
+          <Route path="/create-student" element={<CreateStudent />} />
+          <Route path="/subjects" element={<Subject />} />
 
-      </Routes>
+        </Routes>
       </div>
     </Router>
   );
