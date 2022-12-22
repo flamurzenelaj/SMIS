@@ -7,6 +7,7 @@ import Teacher from "./Pages/Teacher/Teacher";
 import Subject from "./Pages/Subject/Subject.jsx";
 import CreateDepartment from "./Pages/Department/CreateDepartment";
 import CreateStudent from "./Pages/Student/CreateStudent";
+import CreateTeacher from "./Pages/Teacher/CreateTeacher.jsx"
 
 
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="/departments" element={<Department />} />
           <Route path="/create-department" element={<CreateDepartment />} />
           <Route path="/create-student" element={<CreateStudent />} />
+          <Route path="/create-teacher" element={<CreateTeacher />} />
           <Route path="/subjects" element={<Subject />} />
 
         </Routes>
