@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj": {}
+    "C:\\Users\\jon20\\Desktop\\Jon\\Joni UBT\\Semestri V\\Ueb Programim - Xhelal Jashari\\Projekti\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj": {
+    "C:\\Users\\jon20\\Desktop\\Jon\\Joni UBT\\Semestri V\\Ueb Programim - Xhelal Jashari\\Projekti\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
+        "projectUniqueName": "C:\\Users\\jon20\\Desktop\\Jon\\Joni UBT\\Semestri V\\Ueb Programim - Xhelal Jashari\\Projekti\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
         "projectName": "SMIS_API",
-        "projectPath": "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
-        "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\PC\\Desktop\\SMIS\\SMIS\\backend\\SMIS_API\\obj\\",
+        "projectPath": "C:\\Users\\jon20\\Desktop\\Jon\\Joni UBT\\Semestri V\\Ueb Programim - Xhelal Jashari\\Projekti\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
+        "packagesPath": "C:\\Users\\jon20\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jon20\\Desktop\\Jon\\Joni UBT\\Semestri V\\Ueb Programim - Xhelal Jashari\\Projekti\\SMIS\\backend\\SMIS_API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\jon20\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -69,7 +69,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -81,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }
