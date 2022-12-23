@@ -99,7 +99,7 @@ function CreateStudent() {
                             <label htmlFor="name">Phone</label>
                             <input
                                 name="Phone"
-                                type="long"
+                                type="text"
                                 value={form.Phone}
                                 onChange={handleInputChange}
                             />

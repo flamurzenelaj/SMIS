@@ -58,7 +58,7 @@ function CreateTeacher() {
                         <div className="form-input">
                             <label htmlFor="name">FullName</label>
                             <input
-                                FullName="Name"
+                                name="FullName"
                                 type="text"
                                 value={form.FullName}
                                 onChange={handleInputChange}
@@ -68,7 +68,7 @@ function CreateTeacher() {
                         <div className="form-input">
                             <label htmlFor="name">Department</label>
                             <input
-                                Department="Department"
+                                name="Department"
                                 type="text"
                                 value={form.Department}
                                 onChange={handleInputChange}
@@ -96,11 +96,12 @@ function CreateTeacher() {
                             <label htmlFor="name">Phone</label>
                             <input
                                 name="PhoneNumber"
-                                type="long"
+                                type="text"
                                 value={form.PhoneNumber}
                                 onChange={handleInputChange}
                             />
-                        </div>
+                        </div> 
+                        <div className="form-input"></div>
                         <div className="form-input">
                             <button className="button" onClick={handleSubmit}>
                                 Submit

@@ -42,11 +42,11 @@ function Teacher() {
             {teachers.map((item, key) => (
               <tr key={key}>
                 <td>{item.id}</td>
-                <td>{item.FullName}</td>
-                <td>{item.Department}</td>
-                <td>{item.PhoneNumber}</td>
+                <td>{item.fullName}</td>
+                <td>{item.department}</td>
+                <td>{item.phoneNumber}</td>
                 <td>{item.gender}</td>
-                <td>{item.Qualification}</td>
+                <td>{item.qualification}</td>
                 <td className="buttons space-evenly">
                   <Link className="btn-gray">
                     <FaEdit />
