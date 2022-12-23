@@ -11,8 +11,8 @@ using SMIS_API.Data;
 namespace SMIS_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221221174624_initialMigration")]
-    partial class initialMigration
+    [Migration("20221222093201_initialcreate")]
+    partial class initialcreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

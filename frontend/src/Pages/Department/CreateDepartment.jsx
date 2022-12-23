@@ -6,6 +6,7 @@ function CreateDepartment() {
 
   const [form, setForm] = useState({
     id: "",
+    
     DepartmentName: "",
     DepartmentHead: "",
     StartDate: "",

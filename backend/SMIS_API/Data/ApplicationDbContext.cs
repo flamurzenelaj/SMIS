@@ -7,6 +7,7 @@ namespace SMIS_API.Data
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Department> Department { get; set; }
+        public DbSet<Subject> Subject { get; set; }
 
     }
 }
