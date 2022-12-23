@@ -9,6 +9,7 @@ namespace SMIS_API.Data
         public DbSet<Department> Department { get; set; }
         public DbSet<SMIS_API.Models.Student> Student { get; set; }
         public DbSet<SMIS_API.Models.Teacher> Teacher { get; set; }
+        public DbSet<SMIS_API.Models.Subject> Subject { get; set; }
 
     }
 }
