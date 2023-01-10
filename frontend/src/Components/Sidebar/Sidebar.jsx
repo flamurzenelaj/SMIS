@@ -36,37 +36,43 @@ const Sidebar = () => {
             link: "/subjects",
             alt: "subjects",
         },
+        {
+            text: "Account",
+            icon: "icons/signup.svg",
+            link: "/registrationform",
+            alt: "registrationform",
+        },
     ];
     return (
         <div className={isExpended ? "sidebar-relative" : "sidebar-relative sidebar-relative-NX"}>
-        <div className={isExpended ? "side-nav-container" : "side-nav-container side-nav-container-NX"}>
-            <div className="nav-upper">
-                <div className="nav-heading">
-                    {isExpended && (<div className="nav-brand">
-                        <img src="icons/Logo.svg" alt="nav brand" />
-                        <h2>SMIS</h2>
+            <div className={isExpended ? "side-nav-container" : "side-nav-container side-nav-container-NX"}>
+                <div className="nav-upper">
+                    <div className="nav-heading">
+                        {isExpended && (<div className="nav-brand">
+                            <img src="icons/Logo.svg" alt="nav brand" />
+                            <h2>SMIS</h2>
+                        </div>
+                        )}
+                        <button
+                            className={
+                                isExpended ? "hamburger hamburger-in" : "hamburger hamburger-out"
+                            }
+                            onClick={() => setExpendState(!isExpended)}
+                        >
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </button>
                     </div>
+                    <div className="nav-menu">{menuItems.map(({ text, icon, link, alt }) => <Link key={text} to={link} className={isExpended ? "menu-item" : "menu-item menu-item-NX"}>
+                        <img src={icon} alt={alt} />
+                        {isExpended && <p>{text}</p>}
+                        {!isExpended && <div className="tooltip">{text}</div>}
+                    </Link>
                     )}
-                    <button
-                        className={
-                            isExpended ? "hamburger hamburger-in" : "hamburger hamburger-out"
-                        }
-                        onClick={() => setExpendState(!isExpended)}
-                    >
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
+                    </div>
                 </div>
-                <div className="nav-menu">{menuItems.map(({ text, icon, link, alt }) => <Link key={text} to={link} className={isExpended ? "menu-item" : "menu-item menu-item-NX"}>
-                    <img src={icon} alt={alt} />
-                    {isExpended && <p>{text}</p>}
-                    {!isExpended && <div className="tooltip">{text}</div>}
-                </Link>
-                )}
-                </div>
-            </div>
-        </div >
+            </div >
         </div>
     );
 };
