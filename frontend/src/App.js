@@ -9,6 +9,9 @@ import CreateDepartment from "./Pages/Department/CreateDepartment";
 import CreateStudent from "./Pages/Student/CreateStudent";
 import CreateTeacher from "./Pages/Teacher/CreateTeacher.jsx"
 import CreateSubject from "./Pages/Subject/CreateSubject";
+import RegistrationForm from "./Pages/Account/RegistrationForm"
+
+
 
 
 
@@ -28,6 +31,7 @@ function App() {
           <Route path="/create-teacher" element={<CreateTeacher />} />
           <Route path="/subjects" element={<Subject />} />
           <Route path="/create-subject" element={<CreateSubject />} />
+          <Route path="/registrationform" element={<RegistrationForm />} />
 
 
         </Routes>
