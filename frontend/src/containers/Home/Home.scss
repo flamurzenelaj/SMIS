@@ -1,0 +1,186 @@
+.app__home {
+    padding-top: var(--navbar-height);
+    width: 100%;
+    height: 67.5vh;
+    .app__home-firstSection {
+        position: relative;
+        width: 100%;
+        height: 100%;
+
+        img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+        
+            svg {
+            position: absolute;
+                height: 4rem;
+                width: 4rem;
+                color: white;
+                cursor: pointer;
+            }
+
+        .back {
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .forward {
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+    }
+    
+}
+
+.app__home-secondSection{
+    padding: 5% 0;
+    background: #f6f6f6;
+
+ .reverse{
+        flex-direction: row-reverse;
+        padding-left: 10% !important;
+    }
+
+.app__home-secondSection-container{
+    padding: 0 3%;
+    display: flex;
+    justify-content: space-around;
+    height: 42rem;
+    padding-bottom: 5%;
+
+    @media screen and (max-width: 1300px) {
+        height: 40rem;
+    }
+
+    @media screen and (max-width: 1200px) {
+        height: 38rem;
+    }
+
+    @media screen and (max-width: 1100px) {
+        height: 36rem;
+    }
+    @media screen and (max-width: 1000px) {
+        display: grid;
+        height: fit-content;
+        padding-bottom: 25px;
+        padding-left: 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+        &:last-child{
+            border-bottom: none;
+        }
+    }
+
+    .image-container{
+        width: 42%;
+        @media screen and (max-width: 1000px) {
+            width: 100%;
+            height: auto; 
+            display: flex;
+            justify-content: center;
+        }
+
+
+        img{
+        width: 100%;
+        height: 100%;
+
+        @media screen and (max-width: 1000px) {
+            align-content: center;
+            height: 90%;
+            margin: auto;
+        }
+        }
+    }
+
+    .text-container{
+        display: flex;
+        flex-direction: column;
+        margin: auto 0;
+        justify-items: center;
+        text-align: center;
+        align-items: center;
+        padding-right: 5%;
+        
+        @media screen and (max-width: 1000px) {
+            width: 95%;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+
+        h2{
+            font-size: 39px;
+            font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            text-transform: uppercase;
+            font-weight: 100;
+            color: #000;
+            letter-spacing: .1em;
+            line-height: 1.25em;
+            margin-bottom: 0.3em;
+            max-width: 300px;
+
+            @media screen and (max-width: 1000px) {
+                font-size: 27px;
+                margin: 0;
+            }
+        }
+
+        p{
+            font-size: 16px;
+            line-height: 24px;
+            margin: 15px 0 22px;
+            padding: 0;
+
+            @media screen and (max-width: 1000px) {
+                margin: 0;
+                padding: 2% 0;
+                font-size: 14px;
+            }
+        }
+
+        .button-59 {
+            display: inline-block;
+            text-align: center;
+            background: 0 0;
+            padding: 17px 27px;
+            font-size: 16px;
+            line-height: 14px;
+            font-family: 'Brandon Text W01';
+            font-weight: 500;
+            font-style: normal;
+            border: 1px solid #c69a50;
+            color: #fff;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: .3s all;
+            outline: 0;
+            color: #414042;
+            position: relative;
+            transition: .5s ease-in-out;
+            width: 80%;
+          }
+          
+          .button-59:focus {
+            color: #171e29;
+          }
+          
+          .button-59:hover {
+            border-color:  #171e29;
+          }
+    
+          
+          @media (min-width: 768px) {
+            .button-59 {
+              min-width: 170px;
+            }
+          }
+            
+    }
+
+}
+
+}

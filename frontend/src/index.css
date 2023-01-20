@@ -1,26 +1,28 @@
 :root {
-  --primary: #55717e;
-  --dark: #061b28;
-  --gray: #756388;
-  --light: #ffffff;
+  --white-color: white;
+  --black-color: black;
+  --primary-color: #262626;
+  --secondary-color: #8A8C8E;
+  --tertiary-color: #C69A50;
+
+  --navbar-height: 5rem;
 }
 
- a{
-  color: unset;
-  text-decoration: none;
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-.page-container{
-  display: flex;
 }
 
 code {
@@ -28,35 +30,60 @@ code {
     monospace;
 }
 
-.center{
-  text-align: center;
-}
-
-.space-evenly{
+.app__flex {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  align-items: center;
 }
 
-.btn-red{
-  color: red;
-}
-
-.btn-gray{
-  color: gray;
-}
-
-.button {
-  background-color: #009879;
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
+.app__onTextHover:hover {
+  color: var(--secondary-color);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
-.button:hover {
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+
+.--btn {
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 6px 8px;
+  margin: 0 5px 0 0;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s;
 }
+
+.--btn:hover {
+  transform: translateY(-2px);
+}
+
+.--btn-lg {
+  padding: 8px 10px;
+}
+
+.--btn-block {
+  width: 100%;
+}
+
+.--btn-primary {
+  color: #fff;
+  background: #007bff;
+}
+.--btn-secondary {
+  color: #fff;
+  border: 1px solid #fff;
+  background: transparent;
+}
+.--btn-danger {
+  color: #fff;
+  background: orangered;
+}
+
+.--btn-success {
+  color: #fff;
+  background: #28a745;
+}
+

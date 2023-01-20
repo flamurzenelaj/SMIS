@@ -5,19 +5,18 @@ using SMIS_API.Models;
 
 namespace SMIS_API.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : DbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-        protected override void OnModelCreating(ModelBuilder builder)
-        {
-            base.OnModelCreating(builder);
-        }
+    
         public DbSet<Department> Department { get; set; }
-        public DbSet<SMIS_API.Models.Student> Student { get; set; }
-        public DbSet<SMIS_API.Models.Teacher> Teacher { get; set; }
-        public DbSet<SMIS_API.Models.Subject> Subject { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Teacher> Teacher { get; set; }
+        public DbSet<Subject> Subject { get; set; }
+        public DbSet<User> Users { get; set; }
+
 
     }
 }

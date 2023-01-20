@@ -1064,3 +1064,8 @@ C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\obj\Debug\net6.0\refint\SMIS_A
 C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\obj\Debug\net6.0\SMIS_API.pdb
 C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\obj\Debug\net6.0\SMIS_API.genruntimeconfig.cache
 C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\obj\Debug\net6.0\ref\SMIS_API.dll
+C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\bin\Debug\net6.0\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\bin\Debug\net6.0\Microsoft.Extensions.DependencyModel.dll
+C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\bin\Debug\net6.0\Scrutor.dll
+C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Annotations.dll
+C:\Users\PC\Desktop\Xhelali\SMIS\backend\SMIS_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Filters.dll

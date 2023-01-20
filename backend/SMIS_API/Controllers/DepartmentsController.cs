@@ -12,6 +12,7 @@ using SMIS_API.Models;
 namespace SMIS_API.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize(Roles = "Admin")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {

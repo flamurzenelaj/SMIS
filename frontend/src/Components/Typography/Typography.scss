@@ -1,0 +1,95 @@
+  .typography--variant-h1 {
+    font-size: clamp(1rem, 1vw + 1.5rem, 5rem);
+  }
+
+  .typography--variant-h2 {
+    font-size: clamp(1rem, 0.75vw + 1rem, 4rem);
+  }
+  
+  .typography--variant-h3 {
+    font-size: clamp(1rem, 0.5vw + 1rem, 3rem);
+  }
+  
+  .typography--variant-h4 {
+    font-size: clamp(0.5rem, 0.25vw + 0.75rem, 2rem);
+  }
+  
+  .typography--variant-h5 {
+    font-size: clamp(0.25rem, 0.25vw + 0.6rem, 1rem);
+  }
+  
+  .typography--variant-h6 {
+    font-size: 1rem;
+  }
+  
+  .typography--variant-subheading1 {
+    font-size: clamp(0.25rem, 0.25vw + 0.6rem, 1rem);
+    color: var(--secondary-color);
+  }
+  
+  .typography--variant-subheading2 {
+    font-size: 0.875rem;
+  }
+  
+  .typography--variant-body1 {
+    font-size: 1rem;
+  }
+  
+  .typography--variant-body1 {
+    font-size: 0.875rem;
+  }
+  
+  .typography--color-white {
+    color: var(--white-color);
+  }
+
+  .typography--color-black {
+    color: var(--black-color);
+  }
+
+  .typography--color-primary {
+    color: var(--primary-color);
+  }
+
+  .typography--color-secondary {
+    color: var(--secondary-color);
+  }
+
+  .typography--color-tertiary {
+    color: var(--tertiary-color);
+  }
+  
+  .typography--color-error {
+    color: rgb(194, 59, 59);
+  }
+
+  .typography--fontWeight-bold {
+    font-weight: bold;
+  }
+  .typography--fontWeight-w100 {
+    font-weight: 100;
+  }
+  .typography--fontWeight-w200 {
+    font-weight: 200;
+  }
+  .typography--fontWeight-w300 {
+    font-weight: 300;
+  }
+  .typography--fontWeight-w400 {
+    font-weight: 400;
+  }
+  .typography--fontWeight-w500 {
+    font-weight: 500;
+  }
+  .typography--fontWeight-w600 {
+    font-weight: 600;
+  }
+  .typography--fontWeight-w700 {
+    font-weight: 700;
+  }
+  .typography--fontWeight-w800 {
+    font-weight: 800;
+  }
+  .typography--fontWeight-w900 {
+    font-weight: 900;
+  }

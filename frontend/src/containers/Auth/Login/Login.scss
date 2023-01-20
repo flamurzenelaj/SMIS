@@ -1,0 +1,211 @@
+.login-page {
+  overflow-x: hidden;
+  width: 100%;
+  height: 100vh;
+  padding-top: var(--navbar-height);
+  display: flex;
+
+  .left-login {
+    position: relative;
+    display: flex;
+    z-index: 2;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 55%;
+    height: 100%;
+    background-color: #c8d7e6;
+    box-shadow: rgba(0, 0, 0, 0.5) 0px 5px 15px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left left;
+    }
+  }
+}
+
+.right-login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100%;
+
+  .custom-field {
+    z-index: 0;
+    position: relative;
+    font-size: 14px;
+    padding-top: 1.5rem;
+    margin-bottom: 0.4rem;
+
+    input {
+      border: none;
+      appearance: none;
+      -webkit-appearance: none;
+      -ms-appearance: none;
+      -moz-appearance: none;
+      background: #f2f2f2;
+      padding: 0.8rem;
+      border-radius: 0.25rem;
+      width: 15.625rem; // width: 14.882vw - height: 2.619vw
+      outline: none;
+    }
+
+    input:focus::placeholder {
+      color: transparent;
+    }
+
+    input::placeholder {
+      color: #222;
+      transition: color 0.3 ease;
+    }
+
+    .placeholder {
+      position: absolute;
+      left: 1rem;
+      top: calc(50% + 10px);
+      transform: translateY(-50%);
+      color: #aaa;
+      transition: top 0.3s ease-in-out, top 0.3s ease-in-out,
+        top 0.3s ease-in-out;
+    }
+    input:valid + .placeholder,
+    input:focus + .placeholder {
+      top: 1rem;
+      font-size: 10px;
+      color: #222;
+      letter-spacing: 1px;
+    }
+  }
+
+  .btnWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10%;
+    width: 100%;
+
+    .loginBtn {
+      margin-top: 1rem;
+      margin-bottom: 0.2rem;
+      border: 1px solid #aaa;
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+      padding-left: 5rem;
+      padding-right: 5rem;
+      border-radius: 0.25rem;
+      background: #f2f2f2;
+      transition: all 0.15s ease-in-out;
+      opacity: 1;
+      cursor: pointer;
+
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.2) 0px -2.5px 20px;
+      }
+    }
+  }
+}
+
+.popup_container {
+  position: absolute;
+  width: 100%;
+  height: 87.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: 5;
+
+  .popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 95;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -12.5vh;
+    width: 50%;
+    height: 60vh;
+    border-radius: 45px;
+    background: var(--secondary-color);
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.5);
+    text-align: center;
+
+    h1 {
+      font-size: 1.5rem;
+    }
+
+    .popup-input {
+      padding: 0.5rem 1rem;
+      width: 40%;
+      margin: 1rem 0rem;
+    }
+
+    .popup-btn {
+      width: 25%;
+      height: 10%;
+      font-size: 1rem;
+    }
+  }
+}
+
+.gotRegistered {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.auth_links {
+  position: relative;
+  all: unset;
+  margin: 1rem 0rem;
+  color: rgb(22, 133, 238);
+  transition: all 0.2s ease-in;
+  cursor: pointer;
+
+  &:active {
+    color: rgb(14, 83, 148);
+    transition: color 0.2s ease-in;
+  }
+
+  &:hover {
+    color: rgb(71, 92, 112);
+    transition: all 0.2s ease-in;
+  }
+}
+
+@media (min-width: 1500px) {
+  .right-login {
+    input {
+      height: 2.618vw !important;
+      width: 14.882vw !important;
+      padding: 0.762vw !important;
+    }
+  }
+}
+
+@media (max-width: 950px) {
+  .left-login {
+    display: none !important;
+  }
+  .login-page {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+
+    .popup_container {
+      height: 90vh;
+
+      .popup {
+        margin-top: var(--navbar-height);
+        width: 85%;
+      }
+    }
+  }
+}

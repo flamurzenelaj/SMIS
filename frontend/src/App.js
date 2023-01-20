@@ -1,42 +1,30 @@
-import Sidebar from "./Components/Sidebar/Sidebar";
-import Department from "./Pages/Department/Department.jsx"
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
-import Student from "./Pages/Student/Student.jsx";
-import Teacher from "./Pages/Teacher/Teacher";
-import Subject from "./Pages/Subject/Subject.jsx";
-import CreateDepartment from "./Pages/Department/CreateDepartment";
-import CreateStudent from "./Pages/Student/CreateStudent";
-import CreateTeacher from "./Pages/Teacher/CreateTeacher.jsx"
-import CreateSubject from "./Pages/Subject/CreateSubject";
-import RegistrationForm from "./Pages/Account/RegistrationForm"
+import React, { useState } from "react";
+import { AuthContextProvider } from "./lib/context/AuthContext/AuthContextProvider";
+// import { PublicRoute } from "./routes";
 
+import { Routes } from "./routes";
 
-
-
-
+import { Navbar, BurgerMenu } from "./components";
+import { AnimatePresence } from "framer-motion";
+import { LayoutProvider } from "./lib/hooks/useLayout";
 
 function App() {
+  const [burgerMenu, setBurgerMenu] = useState(false);
+
   return (
-    <Router>
-      <div className="page-container">
-        <Sidebar />
-        <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/students" element={<Student />} />
-          <Route path="/teachers" element={<Teacher />} />
-          <Route path="/departments" element={<Department />} />
-          <Route path="/create-department" element={<CreateDepartment />} />
-          <Route path="/create-student" element={<CreateStudent />} />
-          <Route path="/create-teacher" element={<CreateTeacher />} />
-          <Route path="/subjects" element={<Subject />} />
-          <Route path="/create-subject" element={<CreateSubject />} />
-          <Route path="/registrationform" element={<RegistrationForm />} />
+    <AuthContextProvider>
+      <LayoutProvider>
+        <Navbar burgerMenu={burgerMenu} setBurgerMenu={setBurgerMenu} />
+        <AnimatePresence exitBeforeEnter>
+          {burgerMenu && <BurgerMenu setBurgerMenu={setBurgerMenu} />}
+        </AnimatePresence>
 
+        <AnimatePresence exitBeforeEnter>
+          <Routes />
+        </AnimatePresence>
 
-        </Routes>
-      </div>
-    </Router>
+      </LayoutProvider>
+    </AuthContextProvider>
   );
 }
 
