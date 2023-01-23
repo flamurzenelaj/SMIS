@@ -10246,11 +10246,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Desktop\\Xhelali\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\Desktop\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
       "projectName": "SMIS_API",
-      "projectPath": "C:\\Users\\PC\\Desktop\\Xhelali\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
+      "projectPath": "C:\\Users\\PC\\Desktop\\SMIS\\backend\\SMIS_API\\SMIS_API.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Desktop\\Xhelali\\SMIS\\backend\\SMIS_API\\obj\\",
+      "outputPath": "C:\\Users\\PC\\Desktop\\SMIS\\backend\\SMIS_API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
