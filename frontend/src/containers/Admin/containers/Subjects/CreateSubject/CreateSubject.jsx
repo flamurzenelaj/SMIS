@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardWrapper from "../../../DashboardWrapper";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
@@ -10,7 +10,6 @@ import "./CreateSubject.scss";
 export default function CreateSubject() {
   const auth = useAuthContext();
   const navigate = useNavigate();
-  const idRef = useRef(null);
   const nameRef = useRef(null);
   const clasRef = useRef(null);
   const ectsRef = useRef(null);

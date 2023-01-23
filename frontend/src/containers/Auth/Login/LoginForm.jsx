@@ -94,7 +94,6 @@ function LoginForm({ isPopupOpen, setIsPopupOpen }) {
 
     initRegister === false && setInitRegister(true);
 
-    
   };
 
   return (
@@ -165,10 +164,10 @@ function LoginForm({ isPopupOpen, setIsPopupOpen }) {
         exit="exit"
       >
         Forgot Password?
-        <a className="auth_links" onClick={() => togglePopup()}>
+        <p className="auth_links" onClick={() => togglePopup()}>
           {" "}
           Recover Password
-        </a>
+        </p>
       </motion.h6>
 
       <motion.h6

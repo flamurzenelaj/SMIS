@@ -9,5 +9,6 @@ namespace SMIS_API.Models
         public string? DepartmentHead { get; set; } 
         public string? StartDate { get; set; }
         public int NumberOfStudents { get; set; }
+
     }
 }

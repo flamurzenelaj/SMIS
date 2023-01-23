@@ -31,7 +31,6 @@ const get = async (endpoint, params, headers) => {
     params: params,
     headers: { ...DEFAULT_HEADERS, ...headers },
   });
-  console.log("GET-RES", res);
   return res.data;
 };
 
@@ -45,14 +44,12 @@ const update = async (endpoint, body, initialize, headers) => {
 };
 
 const remove = async (endpoint, params, initialize, headers) => {
-  console.log("INIT", initialize);
   if (!(typeof initialize === "boolean")) return undefined;
   if (!initialize) return undefined;
   const res = await axios.delete(`/${endpoint}`, {
     params: params,
     headers: { ...DEFAULT_HEADERS, ...headers },
   });
-  console.log("DELETE-RES", res);
   return res.data;
 };
 

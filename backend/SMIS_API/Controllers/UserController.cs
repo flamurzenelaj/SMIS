@@ -56,19 +56,20 @@ namespace src.Controllers
                 return BadRequest("User not found.");
             dbUser.Username = User.Username;
             dbUser.Uid = User.Uid;
+            dbUser.Role = User.Role;
 
             await _context.SaveChangesAsync();
 
             return Ok(await _context.Users.ToListAsync());
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<List<User>>> DeleteUser(string id)
+        [HttpDelete("{uid}")]
+        public async Task<ActionResult<List<User>>> DeleteUser(string uid)
         {
-            var dbUser = await _context.Users.FindAsync(id);
-            if (dbUser == null)
+            var user = await _context.Users.FirstOrDefaultAsync(dbUser => dbUser.Uid == uid);
+            if (user == null)
                 return BadRequest("User not found.");
 
-            _context.Users.Remove(dbUser);
+            _context.Users.Remove(user);
             await _context.SaveChangesAsync();
             return Ok(await _context.Users.ToListAsync());
         }

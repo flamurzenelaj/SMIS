@@ -1,13 +1,12 @@
 import "./Users.scss";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
 import useGetUser from "../../../../api/User/useGetUser";
 import { CustomSpinner } from "../../../../components";
 
 export default function Users() {
-  const { loading, error, response: getUserDataRes } = useGetUser();
+  const { loading, response: getUserDataRes } = useGetUser();
 
   const columns = [
     {
@@ -84,15 +83,16 @@ export default function Users() {
           <>
             <header>
               <span>Users</span>
-              <Link to={"/admin-dashboard/create-user"}>
+              {/* <Link to={"/admin-dashboard/create-user"}>
                 <button>Create</button>
-              </Link>
+              </Link> */}
             </header>
             <DataGrid
               rows={getUserDataRes.users}
               disableSelectionOnClick
               columns={columns}
               pageSize={8}
+              rowsPerPageOptions={[8, 16, 24, 32, 40]}
               checkboxSelection
             />
           </>

@@ -30,7 +30,7 @@ namespace SMIS_API.Controllers
             CreatePasswordHash(request.Password, out byte[] passwordHash, out byte[] passwordSalt);
             user.Username = request.Username;
             user.Uid = request.Uuid;
-            user.Role = request.isAdmin ? "Admin" : "User";
+            user.Role = request.UserRole ;
             user.PasswordHash = passwordHash;
             user.PasswordSalt = passwordSalt;
 
@@ -59,19 +59,19 @@ namespace SMIS_API.Controllers
                 return BadRequest("Wrong password");
             }
 
-            bool isAdmin = user.Role == "Admin";
+            string UserRole = user.Role == "Admin" ? "Admin" : user.Role == "Teacher" ? "Teacher" : "Student";
 
-            string jwtToken = CreateToken(user, isAdmin);
+            string jwtToken = CreateToken(user, UserRole);
             return Ok(new { token = jwtToken });
         }
 
-        private string CreateToken(User user, bool isAdmin)
+        private string CreateToken(User user, string userRole)
         {
             List<Claim> claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Name, user.Username),
                 new Claim(ClaimTypes.Name, user.Uid),
-                new Claim(ClaimTypes.Role, isAdmin ? "Admin" : "User")
+                new Claim(ClaimTypes.Role, userRole)
             };
 
             var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(_configuration.GetSection("AppSettings:Token").Value));

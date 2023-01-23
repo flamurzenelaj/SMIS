@@ -6,12 +6,7 @@ import { CustomSpinner } from "../../../../../components";
 
 import "./Student.scss";
 import { getUrlLastSegment } from "../../../../../lib/helpers/getUrlLastSegment";
-import { titleCaseConverter } from "../../../../../lib/helpers/titleCaseConverter";
 import useDeleteStudent from "../../../../../api/Student/useDeleteStudent";
-import {
-  errorToast,
-  successToast,
-} from "../../../../../components/Toast/Toasts";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -24,17 +19,14 @@ export default function Student() {
   const [initDelete, setInitDelete] = useState(false);
   const thisPath = getUrlLastSegment(location.pathname);
 
-  const nameRef = useRef(null);
-  const surnameRef = useRef(null);
+  const fullNameRef = useRef(null);
   const genderRef = useRef(null);
   const dateOfBirthRef = useRef(null);
   const phoneRef = useRef(null);
-  const groupRef = useRef(null);
-  const { loading, error, response: data } = useGetStudentById(thisPath, []);
+  const { loading, response: data } = useGetStudentById(thisPath, []);
 
   const {
     loading: deleteLoading,
-    error: deleteError,
     response: deleteData,
   } = useDeleteStudent(thisPath, initDelete);
 
@@ -42,30 +34,44 @@ export default function Student() {
     (data === undefined || data === {}) && (!loading || !deleteLoading);
 
   if (deleteData !== undefined) {
-    navigate("/admin-dashboard/students");
+
+    console.log("deleting..");
+    toast.error("Deleting...", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: 'success1',
+    });  
+    
+    
+    setTimeout(() => {
+      navigate("/Admin-dashboard/Students")
+    }, 2000);
   }
 
   const handleUpdate = async () => {
     const body = {
       id: data.id,
-      name: nameRef.current.value,
-      surname: surnameRef.current.value,
+      fullName: fullNameRef.current.value,
       gender: genderRef.current.value,
       dateOfBirth: dateOfBirthRef.current.value,
       phone: phoneRef.current.value,
-      group: groupRef.current.value,
+      userId: "Unknown",
     };
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
-    const res = await axios.put(`/Student`, body, {
+    const res = await axios.put(`/Students/${data.id}`, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: bearerToken,
       },
     });
-    console.log("STATUS", res.status);
-    console.log("STATUS", res);
+   
 
-    if (res.status === 200) {
+    if (res.status === 200 || res.status ===204) {
       toast.success("Updated.", {
         position: "top-center",
         autoClose: 3000,
@@ -75,12 +81,10 @@ export default function Student() {
         draggable: true,
         progress: undefined,
       });
-      nameRef.current.value = "";
-      surnameRef.current.value = "";
-      genderRef.current.value = "";
-      dateOfBirthRef.current.value = "";
-      phoneRef.current.value = "";
-      groupRef.current.value = "";
+      
+      setTimeout(() => {
+        navigate("/Admin-dashboard/Students")
+      }, 3000);
     } else {
       toast.error("Error. Try again.", {
         position: "top-center",
@@ -129,56 +133,44 @@ export default function Student() {
                 <form className="userUpdateForm">
                   <div className="userUpdateLeft">
                     <div className="userUpdateItem">
-                      <label>Name</label>
+                      <label>Full Name</label>
                       <input
                         type="text"
-                        ref={nameRef}
-                        placeholder={data.name}
+                        ref={fullNameRef}
+                        defaultValue={data.fullName}
                         className="userUpdateInput"
                       />
                     </div>
-                    <div className="userUpdateItem">
-                      <label>Surname</label>
-                      <input
-                        type="text"
-                        ref={surnameRef}
-                        placeholder={data.surname}
-                        className="userUpdateInput"
-                      />
-                    </div>
-                    <div className="userUpdateItem">
+                    <div className="newUserItem">
                       <label>Gender</label>
-                      <input
-                        type="text"
+                      <select
+                        className="newUserSelect"
                         ref={genderRef}
-                        placeholder={data.gender}
-                        className="userUpdateInput"
-                      />
-                    </div> <div className="userUpdateItem">
+                        name="active"
+                        id="active"
+                        defaultValue={data.gender}
+                      >
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                      </select>
+                    </div>
+                     <div className="userUpdateItem">
                       <label>Date Of Birth</label>
                       <input
                         type="date"
                         ref={dateOfBirthRef}
-                        placeholder={data.dateOfBirth}
+                        defaultValue={data.dateOfBirth}
                         className="userUpdateInput"
                       />
                     </div> <div className="userUpdateItem">
                       <label>Phone</label>
                       <input
-                        type="text"
+                        type="number"
                         ref={phoneRef}
-                        placeholder={data.phone}
+                        defaultValue={data.phone}
                         className="userUpdateInput"
                       />
-                    </div> <div className="userUpdateItem">
-                      <label>Group</label>
-                      <input
-                        type="text"
-                        ref={groupRef}
-                        placeholder={data.group}
-                        className="userUpdateInput"
-                      />
-                    </div>
+                    </div> 
                   </div>
                 </form>
               </div>

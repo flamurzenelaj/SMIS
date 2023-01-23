@@ -6,12 +6,7 @@ import { CustomSpinner } from "../../../../../components";
 
 import "./User.scss";
 import { getUrlLastSegment } from "../../../../../lib/helpers/getUrlLastSegment";
-import { titleCaseConverter } from "../../../../../lib/helpers/titleCaseConverter";
 import useDeleteUser from "../../../../../api/User/useDeleteUser";
-import {
-  errorToast,
-  successToast,
-} from "../../../../../components/Toast/Toasts";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -25,13 +20,12 @@ export default function User() {
   const thisPath = getUrlLastSegment(location.pathname);
 
 
-  const nameRef = useRef(null);
-  const codeRef = useRef(null);
-  const { loading, error, response: data } = useGetUserById(thisPath);
+  const userNameRef = useRef(null);
+  const roleRef = useRef(null);
+  const { loading, response: data } = useGetUserById(thisPath);
 
   const {
     loading: deleteLoading,
-    error: deleteError,
     response: deleteData,
   } = useDeleteUser(thisPath, initDelete);
 
@@ -39,16 +33,31 @@ export default function User() {
     (data === undefined || data === {}) && (!loading || !deleteLoading);
 
   if (deleteData !== undefined) {
-    navigate("/admin-dashboard/users");
+    toast.error("Deleting User", {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      toastId: 'success1',
+    });
+    setTimeout(() => {
+      navigate("/admin-dashboard/users");
+    }, 2000);
   }
 
   const handleUpdate = async () => {
     const body = {
       id: data.id,
-      uid: data.id,
-      name: nameRef.current.value,
-      code: codeRef.current.value,
+      uid: data.uid,
+      username: userNameRef.current.value,
+      role: roleRef.current.value,
+      passwordHash: data.passwordHash,
+      passwordSalt: data.passwordSalt,
     };
+    console.log(body)
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
     const res = await axios.put(`/User`, body, {
       headers: {
@@ -56,8 +65,7 @@ export default function User() {
         Authorization: bearerToken,
       },
     });
-    console.log("STATUS", res.status);
-    console.log("STATUS", res);
+    
 
     if (res.status === 200) {
       toast.success("Updated.", {
@@ -69,8 +77,11 @@ export default function User() {
         draggable: true,
         progress: undefined,
       });
-      nameRef.current.value = "";
-      codeRef.current.value = "";
+
+      setTimeout(() => {
+        navigate("/admin-dashboard/users");
+      }, 3000);
+      
     } else {
       toast.error("Error. Try again.", {
         position: "top-center",
@@ -118,12 +129,12 @@ export default function User() {
                 </div>
                 <form className="userUpdateForm">
                   <div className="userUpdateLeft">
-                    <div className="userUpdateItem">
+                    
+                  <div className="userUpdateItem">
                       <label>UID</label>
                       <input
                         type="text"
-                        ref={nameRef}
-                        placeholder={data.uid}
+                        value={data.uid}
                         className="userUpdateInput"
                       />
                     </div>
@@ -131,8 +142,8 @@ export default function User() {
                       <label>Username</label>
                       <input
                         type="text"
-                        ref={codeRef}
-                        placeholder={data.username}
+                        ref={userNameRef}
+                        defaultValue={data.username}
                         className="userUpdateInput"
                       />
                     </div>
@@ -140,11 +151,14 @@ export default function User() {
                       <label>Role</label>
                       <select
                         className="newUserSelect"
+                        ref={roleRef}
                         name="active"
                         id="active"
+                        defaultValue={data.role}
                       >
                         <option value="Admin">Admin</option>
-                        <option value="User">User</option>
+                        <option value="Student">Student</option>
+                        <option value="Teacher">Teacher</option>
                       </select>
                     </div>
                   </div>

@@ -1,13 +1,12 @@
 import "./Subjects.scss";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
 import useGetSubject from "../../../../api/Subject/useGetSubject";
 import { CustomSpinner } from "../../../../components";
 
 export default function Subjects() {
-  const { loading, error, response: getSubjectDataRes } = useGetSubject();
+  const { loading, response: getSubjectDataRes } = useGetSubject();
 
   const columns = [
     {
@@ -94,6 +93,7 @@ export default function Subjects() {
               columns={columns}
               pageSize={8}
               checkboxSelection
+              rowsPerPageOptions={[8, 16, 24, 32, 40]}  
             />
           </>
         )}

@@ -6,6 +6,14 @@ import registerPhoto from "../assets/registerPhoto.png";
 import { v4 as uuidv4 } from "uuid";
 import { CustomSpinner } from "../../../components";
 import useRegister from "../../../api/Auth/useRegister";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useAuthContext } from "../../../lib/context/AuthContext/AuthContext";
+
+
+
 
 import "./Register.scss";
 
@@ -20,22 +28,32 @@ import {
 } from "../framer_variants/registerPageVariants";
 
 function RegisterPage() {
+
+  const auth = useAuthContext();
+  const navigate = useNavigate();
   const uidRef = useRef(null);
   const pwdRef = useRef(null);
   const rePwdRef = useRef(null);
-  const isAdminRef = useRef(null);
+
+
 
   const [uid, setUid] = useState("");
   const [uidError, setUidError] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [role, setRole] = useState("");
   const [pwd, setPwd] = useState("");
   const [pwdPower, setPwdPower] = useState("Enter Password");
+
+  const [fullName, setFullName] = useState("");
+  const [gender, setGender] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [phone, setPhone] = useState("");
+  
 
   const [requestBody, setRequestBody] = useState({
     username: uid,
     password: pwd,
     uuid: uuidv4(),
-    isAdmin: isAdmin,
+    userRole: role,
   });
 
   const [initRegister, setInitRegister] = useState(false);
@@ -47,36 +65,14 @@ function RegisterPage() {
   const [rePwd, setRePwd] = useState("");
   const [rePwdError, setRePwdError] = useState(false);
 
-  const [gotRegistered, setGotRegistered] = useState(false);
+  const [gotRegistered] = useState(false);
 
   const [errorMsg, setErrorMsg] = useState("");
+  const [nextRole, setNextRole] = useState("");
 
-  const clearAllInputFields = () => {
-    clearUid();
-    clearPwd();
-    clearRePwd();
-    setIsAdmin(false);
-    setPwdPower("Enter Password");
-    setPwdPowerBarStyle({
-      width: "100%",
-      backgroundColor: "rgba(223, 219, 219, 0.0)",
-    });
-  };
 
-  const clearUid = () => {
-    uidRef.current.value = "";
-  };
-
-  const clearPwd = () => {
-    pwdRef.current.value = "";
-  };
-  const clearRePwd = () => {
-    rePwdRef.current.value = "";
-  };
-
-  const handleIsAdminChange = (e) => {
-    console.log(e.target.checked);
-    setIsAdmin(e.target.checked);
+  const handleRoleChange = (e) => {
+    setRole(e);
   };
 
   const handlePasswordChange = (e) => {
@@ -116,7 +112,7 @@ function RegisterPage() {
         border: "none",
         backgroundColor: "orangered",
       });
-    } else if (e.target.value.length == 0) {
+    } else if (e.target.value.length === 0) {
       setPwdPower("Enter Password");
       setPwdPowerBarStyle({
         width: "100%",
@@ -139,7 +135,7 @@ function RegisterPage() {
     if (e.target.value.length > 0 && e.target.value.length < 3) {
       setUidError(true);
       e.target.style.border = "1px solid red";
-    } else if (e.target.value.length == 0 || e.target.value.length >= 3) {
+    } else if (e.target.value.length === 0 || e.target.value.length >= 3) {
       setUidError(false);
       e.target.style.border = "none";
     }
@@ -152,6 +148,127 @@ function RegisterPage() {
   if (response !== undefined && response.data !== undefined) {
     setErrorMsg(response.data.msg);
   }
+
+ 
+
+  const handleSubmit = () => {
+    if (pwd !== rePwd) {
+      setErrorMsg("Password is not the same");
+      return;
+    } else if (uid.length <= 6) {
+      setErrorMsg("Username has to be at least 6 character.");
+      return;
+    } else {
+      setErrorMsg("");
+    }
+
+    const id = uuidv4();  
+
+    setRequestBody({
+      username: uid,
+      password: pwd,
+      uuid: id,
+      userRole: role,
+    });
+
+    if(nextRole === "Student"){
+    const studentBody = {
+      id: 0,
+      userId: id,
+      fullName: fullName,
+      phone: phone,
+      gender: gender,
+      dateOfBirth: dateOfBirth,
+    };
+    const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
+    try {
+      const res = axios.post(`/Students`, studentBody, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: bearerToken,
+        },
+      });
+
+      if (res.status === 200 || res.status ===201 ) {
+        setFullName("");
+        setPhone("");
+        setGender("");
+        setPhone("");
+
+        // navigate("/login");
+      } else {
+        toast.error("Error. Try again.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (e) {
+      toast.error(e.toString(), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+   }
+   if(nextRole === "Teacher"){
+    const teacherBody = {
+      id: 0,
+      userId: id,
+      fullName: fullName,
+      phone: phone,
+      gender: gender,
+    };
+    const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
+    try {
+      const res = axios.post(`/Teachers`, teacherBody, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: bearerToken,
+        },
+      });
+      
+      if (res.status === 200 || res.status ===201 ) {
+        setFullName("");
+        setPhone("");
+        setGender("");
+
+        // navigate("/login");
+      } else {
+        toast.error("Error. Try again.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      }
+    } catch (e) {
+      toast.error(e.toString(), {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  }
+
+   
+    initRegister === false && setInitRegister(true);
+  };
 
   useEffect(() => {
     console.log("Error", error);
@@ -170,193 +287,448 @@ function RegisterPage() {
     console.log(response && response.status);
     if (response !== undefined) {
       setErrorMsg(response.msg);
-      clearAllInputFields();
+      navigate("/login");
     }
   }, [response]);
 
-  const handleSubmit = () => {
-    if (pwd !== rePwd) {
-      setErrorMsg("Password is not the same");
-      return;
-    } else if (uid.length <= 6) {
-      setErrorMsg("Username has to be at least 6 character.");
-      return;
-    } else {
-      setErrorMsg("");
-    }
-
-    setRequestBody({
-      username: uid,
-      password: pwd,
-      uuid: uuidv4(),
-      isAdmin: isAdmin,
-    });
-
-    initRegister === false && setInitRegister(true);
-  };
 
   return (
     <div className="register-page">
-      <div
-        className="left-register"
-        style={gotRegistered ? { display: "none" } : { display: "flex" }}
-      >
-        <motion.h1 // REGISTER H1
-          variants={h1Variant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
+      { nextRole === "" &&
+        <div
+          className="left-register"
+          style={gotRegistered ? { display: "none" } : { display: "flex" }}
         >
-          Register Here!
-        </motion.h1>
-
-        <motion.label // USERNAME
-          className="custom-field"
-          variants={inputFieldEmailVariant}
-          initial="hidden"
-          animate="visible"
-          value={uid}
-          exit="exit"
-        >
-          <input
-            type="text"
-            name="uid"
-            ref={uidRef}
-            onChange={(event) => handleUidChange(event)}
-            required
-          />
-          <span className="placeholder">Enter username</span>
-          {uidError && (
-            <div className="error-msg">
-              <FiAlertCircle />
-              <h1>3 or more characters</h1>
-            </div>
-          )}
-        </motion.label>
-
-        <motion.label // PASSWORD
-          className="custom-field"
-          id="custom-field-Password"
-          variants={inputFieldPasswordVariant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <input
-            type="password"
-            id="password"
-            name="pwd"
-            ref={pwdRef}
-            onChange={(event) => handlePasswordChange(event)}
-            required
-          />
-          <span className="placeholder">Enter Password</span>
-          <h6 id="passwordCheck"></h6>
-          <div className="password-power">
-            <div>
-              <div style={pwdPowerBarStyle}></div>
-            </div>
-            <h1>{pwdPower}</h1>
-          </div>
-        </motion.label>
-
-        <motion.label // RE-PASSWORD
-          className="custom-field"
-          variants={inputFieldRePasswordVariant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <input
-            type="password"
-            id="re-password"
-            ref={rePwdRef}
-            name="rePwd"
-            onChange={(event) => handleRePasswordChange(event)}
-            required
-          />
-          <span className="placeholder">Re-Enter Password</span>
-          <h6 id="re-passwordCheck"></h6>
-          {rePwdError && (
-            <div className="error-msg">
-              <FiAlertCircle />
-              <h1>Password is not the same.</h1>
-            </div>
-          )}
-        </motion.label>
-
-        <div className="toggle-c">
-          <motion.label
-            variants={inputFieldEmailVariant}
+          <motion.h1 // REGISTER H1
+            variants={h1Variant}
             initial="hidden"
             animate="visible"
             exit="exit"
-            className="toggle"
-            htmlFor="uniqueID"
+          >
+            Register Here!
+          </motion.h1>
+
+          <motion.label // USERNAME
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={uid}
+            exit="exit"
           >
             <input
-              type="checkbox"
-              ref={isAdminRef}
-              className="toggle__input"
-              id="uniqueID"
-              onChange={(event) => handleIsAdminChange(event)}
+              type="text"
+              name="uid"
+              ref={uidRef}
+              onChange={(event) => handleUidChange(event)}
+              required
             />
-            <span className="toggle-track">
-              <span className="toggle-indicator">
-                <span className="checkMark">
-                  <svg
-                    viewBox="0 0 24 24"
-                    id="ghq-svg-check"
-                    role="presentation"
-                    aria-hidden="true"
-                  >
-                    <path d="M9.86 18a1 1 0 01-.73-.32l-4.86-5.17a1.001 1.001 0 011.46-1.37l4.12 4.39 8.41-9.2a1 1 0 111.48 1.34l-9.14 10a1 1 0 01-.73.33h-.01z"></path>
-                  </svg>
-                </span>
-              </span>
-            </span>
-            Is Admin ?
+            <span className="placeholder">Enter username</span>
+            {uidError && (
+              <div className="error-msg">
+                <FiAlertCircle />
+                <h1>3 or more characters</h1>
+              </div>
+            )}
           </motion.label>
-        </div>
 
-        <motion.div // SUBMIT BTN
-          className="btnWrapper"
-          variants={btnVariant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          <button
-            className="registerBtn"
-            onClick={() => {
-              handleSubmit();
-            }}
+          <motion.label // PASSWORD
+            className="custom-field"
+            id="custom-field-Password"
+            variants={inputFieldPasswordVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
           >
-            {loading ? <CustomSpinner size={20} /> : "Register!"}
-          </button>
-        </motion.div>
+            <input
+              type="password"
+              id="password"
+              name="pwd"
+              ref={pwdRef}
+              onChange={(event) => handlePasswordChange(event)}
+              required
+            />
+            <span className="placeholder">Enter Password</span>
+            <p id="passwordCheck"></p>
+            <div className="password-power">
+              <div>
+                <div style={pwdPowerBarStyle}></div>
+              </div>
+              <h1>{pwdPower}</h1>
+            </div>
+          </motion.label>
 
-        <motion.h6
-          variants={h6Variant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
-        >
-          You have an account?{" "}
-          <Link to="/login" className="auth_links">
-            Login here
-          </Link>
-        </motion.h6>
+          <motion.label // RE-PASSWORD
+            className="custom-field"
+            variants={inputFieldRePasswordVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            <input
+              type="password"
+              id="re-password"
+              ref={rePwdRef}
+              name="rePwd"
+              onChange={(event) => handleRePasswordChange(event)}
+              required
+            />
+            <span className="placeholder">Re-Enter Password</span>
+            <p id="re-passwordCheck"></p>
+            {rePwdError && (
+              <div className="error-msg">
+                <FiAlertCircle />
+                <h1>Password is not the same.</h1>
+              </div>
+            )}
+          </motion.label>
+          <br />
+          
+          <div className="toggle-c">
+            <motion.label
+              variants={inputFieldEmailVariant}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="toggle"
+              htmlFor="uniqueID"
+            >
+              <p>You are: </p>
+              <div className="select-field">
+                <select
+                  id="uniqueID"
+                  onChange={(event) => handleRoleChange(event.target.value)}
+                >
+                  <option value="">--Select Role--</option>
+                  <option value="Student">Student</option>
+                  <option value="Teacher">Teacher</option>
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+            </motion.label>
+          </div>
+          <br />
 
-        <motion.h6
-          variants={h6Variant}
-          initial="hidden"
-          animate="visible"
-          exit="exit"
+          <motion.div // SUBMIT BTN
+            className="btnWrapper"
+            variants={btnVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {role === "Admin" && (
+              <button
+                className="registerBtn"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading ? <CustomSpinner size={20} /> : "Register!"}
+              </button>
+            )}
+
+            {(role === "Teacher" || role === "Student") && (
+              <button
+                className="registerBtn"
+                onClick={() => {
+                  setNextRole(role);
+                }}
+              >
+                {loading ? <CustomSpinner size={20} /> : "Continue"}
+              </button>
+            )}
+          </motion.div>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            You have an account?{" "}
+            <Link to="/login" className="auth_links">
+              Login here
+            </Link>
+          </motion.h6>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {errorMsg}
+          </motion.h6>
+        </div>
+      }
+
+
+
+      {nextRole === "Student" && (
+        <div
+          className="left-register"
+          style={gotRegistered ? { display: "none" } : { display: "flex" }}
         >
-          {errorMsg}
-        </motion.h6>
-      </div>
+          <motion.h1 // REGISTER H1
+            variants={h1Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Student Details
+          </motion.h1>
+
+          <motion.label // Fullname
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={fullName}
+            exit="exit"
+          >
+            <input
+              type="text"
+              name="fullName"
+              onChange={(event) => setFullName(event.target.value)}
+              required
+            />
+            <span className="placeholder">Enter Full Name</span>
+            
+          </motion.label>
+          <br />
+
+          <div className="toggle-c">
+            <motion.label
+              variants={inputFieldEmailVariant}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="toggle"
+              htmlFor="uniqueID"
+            >
+              <div className="select-field">
+                <select
+                  id="uniqueID"
+                  onChange={(event) => setGender(event.target.value)}
+                >
+                  <option value="">--Select Gender--</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </motion.label>
+          </div>
+
+          <motion.label // Date Of Birth
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={dateOfBirth}
+            exit="exit"
+          >
+            <input
+              type="date"
+              name="dateOfBirth"
+              onChange={(event) => setDateOfBirth(event.target.value)}
+              required
+            />
+            
+          </motion.label>
+
+          <motion.label // Phone
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={phone}
+            exit="exit"
+          >
+            <input
+              type="text"
+              name="phone"
+              onChange={(event) => setPhone(event.target.value)}
+              required
+            />
+            <span className="placeholder">Enter Phone Number</span>
+            
+          </motion.label>
+          
+
+          <motion.div // Back BTN
+            className="btnWrapper"
+            variants={btnVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+              <button
+                className="registerBtn"
+                onClick={() => {
+                  setNextRole("");
+                }}
+              >
+                {loading ? <CustomSpinner size={20} /> : "Back"}
+              </button>
+            
+          </motion.div>
+
+          <motion.div // SUBMIT BTN
+            className="btnWrapper"
+            variants={btnVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+              <button
+                className="registerBtn"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading ? <CustomSpinner size={20} /> : "Register!"}
+              </button>
+            
+          </motion.div>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            You have an account?{" "}
+            <Link to="/login" className="auth_links">
+              Login here
+            </Link>
+          </motion.h6>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {errorMsg}
+          </motion.h6>
+        </div>
+      )}
+
+      {nextRole === "Teacher" && (
+        <div
+          className="left-register"
+          style={gotRegistered ? { display: "none" } : { display: "flex" }}
+        >
+          <motion.h1 // REGISTER H1
+            variants={h1Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            Teacher Details
+          </motion.h1>
+
+          <motion.label // Fullname
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={fullName}
+            exit="exit"
+          >
+            <input
+              type="text"
+              name="fullName"
+              onChange={(event) => setFullName(event.target.value)}
+              required
+            />
+            <span className="placeholder">Enter Full Name</span>
+            
+          </motion.label>
+          <br />
+
+          <div className="toggle-c">
+            <motion.label
+              variants={inputFieldEmailVariant}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="toggle"
+              htmlFor="uniqueID"
+            >
+              <div className="select-field">
+                <select
+                  id="uniqueID"
+                  onChange={(event) => setGender(event.target.value)}
+                >
+                  <option value="">--Select Gender--</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+            </motion.label>
+          </div>
+
+
+          <motion.label // Phone
+            className="custom-field"
+            variants={inputFieldEmailVariant}
+            initial="hidden"
+            animate="visible"
+            value={phone}
+            exit="exit"
+          >
+            <input
+              type="text"
+              name="phone"
+              onChange={(event) => setPhone(event.target.value)}
+              required
+            />
+            <span className="placeholder">Enter Phone Number</span>
+            
+          </motion.label>
+          
+
+          <motion.div // SUBMIT BTN
+            className="btnWrapper"
+            variants={btnVariant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+              <button
+                className="registerBtn"
+                onClick={() => {
+                  handleSubmit();
+                }}
+              >
+                {loading ? <CustomSpinner size={20} /> : "Register!"}
+              </button>
+            
+          </motion.div>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            You have an account?{" "}
+            <Link to="/login" className="auth_links">
+              Login here
+            </Link>
+          </motion.h6>
+
+          <motion.h6
+            variants={h6Variant}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+          >
+            {errorMsg}
+          </motion.h6>
+        </div>
+      )}
 
       <motion.div
         className="right-register"

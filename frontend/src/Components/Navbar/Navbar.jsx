@@ -1,13 +1,11 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 import "./Navbar.scss";
 
 const Navbar = ({ burgerMenu, setBurgerMenu }) => {
-  const location = useLocation();
   const auth = useAuthContext();
 
-  console.log("USER", auth.user);
   return (
     <div className="app__navbar app__flex">
       <h2 className="logo">SMIS</h2>
@@ -22,7 +20,7 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
         })}
         {auth.isAuthenticated ? (
           <li key={`navbar-link-logout`}>
-            <p
+            <div
               style={{
                 display: "flex",
                 justifyContent: "center",
@@ -30,7 +28,8 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
                 color: "white",
               }}
             >
-              <div
+              {auth.user.role === "Admin" ? <p><Link to="/admin-dashboard">Dashboard</Link></p> : ""}
+              <p
                 style={{
                   display: "inline-block",
                   height: "2rem",
@@ -43,7 +42,7 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
               <p onClick={() => auth.logout()}>
                 <Link to={`#`}> LOGOUT</Link>
               </p>
-            </p>
+            </div>
           </li>
         ) : (
           <li key={`navbar-link-login`}>

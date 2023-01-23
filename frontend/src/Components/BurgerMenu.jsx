@@ -37,6 +37,14 @@ const BurgerMenu = ({ setBurgerMenu }) => {
           )}
         </motion.li>
 
+        <motion.li
+          initial={{ y: "-5vh", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5 + 0 / 10 }}
+        >
+           {auth.user.role === "Admin" ? <p onClick={() => setBurgerMenu(false)}><Link to="/admin-dashboard">Dashboard</Link></p> : ""}
+        </motion.li>
+
         {["Home", "About Us", "Classes", "Teachers", "Contact us"].map((item, index) => {
           const link = item.replace(" ", "-").toLowerCase();
 

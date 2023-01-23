@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardWrapper from "../../../DashboardWrapper";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
@@ -11,14 +11,14 @@ export default function CreateUser() {
   const auth = useAuthContext();
   const navigate = useNavigate();
   const idRef = useRef(null);
-  const nameRef = useRef(null);
-  const codeRef = useRef(null);
+  const userNameRef = useRef(null);
+  const roleRef = useRef(null);
 
   const handleCreate = async () => {
     const body = {
       id: idRef.current.value,
-      name: nameRef.current.value,
-      code: codeRef.current.value,
+      username: userNameRef.current.value,
+      role: roleRef.current.value,
     };
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
     try {
@@ -32,8 +32,8 @@ export default function CreateUser() {
       console.log("STATUS", res);
 
       if (res.status === 200) {
-        nameRef.current.value = "";
-        codeRef.current.value = "";
+        userNameRef.current.value = "";
+        roleRef.current.value = "";
         navigate("/admin-dashboard/regions");
       } else {
         toast.error("Error. Try again.", {
@@ -73,13 +73,14 @@ export default function CreateUser() {
             <div className="newUserItem">
               <label>Role</label>
               <select className="newUserSelect" name="active" id="active">
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
                 <option value="Admin">Admin</option>
-                <option value="User">User</option>
               </select>
             </div>
             <div className="newUserItem">
               <label>Username</label>
-              <input ref={codeRef} type="text" placeholder="john" />
+              <input ref={userNameRef} type="text" placeholder="john" />
             </div>
           </div>
           <button className="newUserButton" onClick={() => handleCreate()}>

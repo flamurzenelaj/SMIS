@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import DashboardWrapper from "../../../DashboardWrapper";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
@@ -10,22 +10,19 @@ import "./CreateTeacher.scss";
 export default function CreateTeacher() {
   const auth = useAuthContext();
   const navigate = useNavigate();
-  const idRef = useRef(null);
   const fullNameRef = useRef(null);
-  const departmentRef = useRef(null);
   const phoneNumberRef = useRef(null);
   const genderRef = useRef(null);
-  const qualificationRef = useRef(null);
 
 
   const handleCreate = async () => {
     const body = {
       id: 0,
       fullName: fullNameRef.current.value,
-      department: departmentRef.current.value,
       phoneNumber: phoneNumberRef.current.value,
       gender: genderRef.current.value,
-      qualification: qualificationRef.current.value,
+      userId: "unknown",
+
     };
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
     try {
@@ -41,10 +38,8 @@ export default function CreateTeacher() {
 
       if (res.status === 200 || res.status ===201 ) {
         fullNameRef.current.value = "";
-        departmentRef.current.value = "";
         phoneNumberRef.current.value = "";
         genderRef.current.value = "";
-        qualificationRef.current.value = "";
         navigate("/admin-dashboard/teachers");
       } else {
         toast.error("Error. Try again.", {
@@ -82,10 +77,6 @@ export default function CreateTeacher() {
               <input ref={fullNameRef} type="text"  />
             </div>
             <div className="newUserItem">
-              <label>Department</label>
-              <input ref={departmentRef} type="text" />
-            </div>
-            <div className="newUserItem">
               <label>Phone Number</label>
               <input ref={phoneNumberRef} type="text" />
             </div>
@@ -93,10 +84,6 @@ export default function CreateTeacher() {
               <label>Gender</label>
               <input ref={genderRef} type="text" />
             </div> 
-            <div className="newUserItem">
-              <label>Qualification</label>
-              <input ref={qualificationRef} type="text" />
-            </div>
             {/* <div className="newUserItem">
               <label>Active</label>
               <select className="newUserSelect" name="active" id="active">

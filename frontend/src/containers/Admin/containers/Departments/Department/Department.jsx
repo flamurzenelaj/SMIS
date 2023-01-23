@@ -6,12 +6,7 @@ import { CustomSpinner } from "../../../../../components";
 
 import "./Department.scss";
 import { getUrlLastSegment } from "../../../../../lib/helpers/getUrlLastSegment";
-import { titleCaseConverter } from "../../../../../lib/helpers/titleCaseConverter";
 import useDeleteDepartment from "../../../../../api/Department/useDeleteDepartment";
-import {
-  errorToast,
-  successToast,
-} from "../../../../../components/Toast/Toasts";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,12 +23,11 @@ export default function Department() {
   const departmentHeadRef = useRef(null);
   const startDateRef = useRef(null);
   const numberOfStudentsRef = useRef(null);
-  const { loading, error, response: data } = useGetDepartmentById(thisPath, []);
+  const { loading, response: data } = useGetDepartmentById(thisPath, []);
   console.log(thisPath);
 
   const {
     loading: deleteLoading,
-    error: deleteError,
     response: deleteData,
   } = useDeleteDepartment(thisPath, initDelete);
 
@@ -52,8 +46,10 @@ export default function Department() {
       startDate: startDateRef.current.value,
       numberOfStudents: numberOfStudentsRef.current.value,
     };
+
+    console.log(body);
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
-    const res = await axios.put(`/Departments/`, body, {
+    const res = await axios.put(`/Departments/${data.id}`, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: bearerToken,
@@ -62,7 +58,7 @@ export default function Department() {
     console.log("STATUS", res.status);
     console.log("STATUS", res);
 
-    if (res.status === 200) {
+    if (res.status === 200 || res.status ===204) {
       toast.success("Updated.", {
         position: "top-center",
         autoClose: 3000,
@@ -72,10 +68,8 @@ export default function Department() {
         draggable: true,
         progress: undefined,
       });
-      departmentNameRef.current.value = "";
-      departmentHeadRef.current.value = "";
-      startDateRef.current.value = "";
-      numberOfStudentsRef.current.value = "";
+
+      navigate("/Admin-dashboard/Departments")
 
     } else {
       toast.error("Error. Try again.", {
@@ -129,7 +123,7 @@ export default function Department() {
                       <input
                         type="text"
                         ref={departmentNameRef}
-                        placeholder={data.departmentName}
+                        defaultValue={data.departmentName}
                         className="userUpdateInput"
                       />
                     </div>
@@ -138,7 +132,7 @@ export default function Department() {
                       <input
                         type="text"
                         ref={departmentHeadRef}
-                        placeholder={data.departmentHead}
+                        defaultValue={data.departmentHead}
                         className="userUpdateInput"
                       />
                     </div>
@@ -147,15 +141,15 @@ export default function Department() {
                       <input
                         type="date"
                         ref={startDateRef}
-                        placeholder={data.startDate}
+                        defaultValue={data.startDate}
                         className="userUpdateInput"
                       />
                     </div> <div className="userUpdateItem">
                       <label>Number Of Students</label>
                       <input
-                        type="text"
+                        type="number"
                         ref={numberOfStudentsRef}
-                        placeholder={data.numberOfStudents}
+                        defaultValue={data.numberOfStudents}
                         className="userUpdateInput"
                       />
                     </div>

@@ -1,13 +1,12 @@
 import "./Departments.scss";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
 import useGetDepartment from "../../../../api/Department/useGetDepartment";
 import { CustomSpinner } from "../../../../components";
 
 export default function Departments() {
-  const { loading, error, response: getDepartmentDataRes } = useGetDepartment();
+  const { loading, response: getDepartmentDataRes } = useGetDepartment();
 
   const columns = [
     {
@@ -102,6 +101,7 @@ export default function Departments() {
               disableSelectionOnClick
               columns={columns}
               pageSize={8}
+              rowsPerPageOptions={[8, 16, 24, 32, 40]}
               checkboxSelection
             />
           </>

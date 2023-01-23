@@ -1,13 +1,12 @@
 import "./Teachers.scss";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
 import useGetTeacher from "../../../../api/Teacher/useGetTeacher";
 import { CustomSpinner } from "../../../../components";
 
 export default function Teachers() {
-  const { loading, error, response: getTeacherDataRes } = useGetTeacher();
+  const { loading, response: getTeacherDataRes } = useGetTeacher();
 
   const columns = [
     {
@@ -26,14 +25,7 @@ export default function Teachers() {
         <div className="userListUser">{params.row.fullName}</div>;
       },
     },
-    {
-      field: "department",
-      headerName: "Department",
-      width: 200,
-      renderCell: (params) => {
-        return <div className="userListUser">{params.row.department}</div>;
-      },
-    },
+   
     {
       field: "phoneNumber",
       headerName: "PhoneNumber",
@@ -50,14 +42,7 @@ export default function Teachers() {
         return <div className="userListUser">{params.row.gender}</div>;
       },
     },
-    {
-      field: "qualification",
-      headerName: "Qualification",
-      width: 200,
-      renderCell: (params) => {
-        return <div className="userListUser">{params.row.qualification}</div>;
-      },
-    },
+   
     {
       field: "action",
       headerName: "Action",
@@ -110,6 +95,7 @@ export default function Teachers() {
               columns={columns}
               pageSize={8}
               checkboxSelection
+              rowsPerPageOptions={[8, 16, 24, 32, 40]}
             />
           </>
         )}

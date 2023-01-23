@@ -6,12 +6,7 @@ import { CustomSpinner } from "../../../../../components";
 
 import "./Subject.scss";
 import { getUrlLastSegment } from "../../../../../lib/helpers/getUrlLastSegment";
-import { titleCaseConverter } from "../../../../../lib/helpers/titleCaseConverter";
 import useDeleteSubject from "../../../../../api/Subject/useDeleteSubject";
-import {
-  errorToast,
-  successToast,
-} from "../../../../../components/Toast/Toasts";
 import { useAuthContext } from "../../../../../lib/context/AuthContext/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,11 +22,10 @@ export default function Subject() {
   const nameRef = useRef(null);
   const clasRef = useRef(null);
   const ectsRef = useRef(null);
-  const { loading, error, response: data } = useGetSubjectById(thisPath, []);
+  const { loading, response: data } = useGetSubjectById(thisPath, []);
 
   const {
     loading: deleteLoading,
-    error: deleteError,
     response: deleteData,
   } = useDeleteSubject(thisPath, initDelete);
 

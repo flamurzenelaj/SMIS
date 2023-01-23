@@ -1,14 +1,14 @@
 import "./Students.scss";
 import { DataGrid } from "@material-ui/data-grid";
-import { DeleteOutline } from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
 import useGetStudent from "../../../../api/Student/useGetStudent";
 import { CustomSpinner } from "../../../../components";
 
 export default function Students() {
-  const { loading, error, response: getStudentDataRes } = useGetStudent();
+  const { loading,  response: getStudentDataRes } = useGetStudent();
 
+ 
   const columns = [
     {
       field: "id",
@@ -19,19 +19,11 @@ export default function Students() {
       },
     },
     {
-      field: "name",
-      headerName: "Name",
+      field: "fullName",
+      headerName: "Full Name",
       width: 200,
       renderCell: (params) => {
-        <div className="userListUser">{params.row.name}</div>;
-      },
-    },
-    {
-      field: "surname",
-      headerName: "Surname",
-      width: 200,
-      renderCell: (params) => {
-        return <div className="userListUser">{params.row.surname}</div>;
+        <div className="userListUser">{params.row.fullName}</div>;
       },
     },
     {
@@ -44,7 +36,7 @@ export default function Students() {
     },
     {
       field: "dateOfBirth",
-      headerName: "DateOfBirth",
+      headerName: "Date Of Birth",
       width: 200,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.dateOfBirth}</div>;
@@ -56,14 +48,6 @@ export default function Students() {
       width: 200,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.phone}</div>;
-      },
-    },
-    {
-      field: "group",
-      headerName: "Group",
-      width: 200,
-      renderCell: (params) => {
-        return <div className="userListUser">{params.row.group}</div>;
       },
     },
     {
@@ -117,6 +101,7 @@ export default function Students() {
               disableSelectionOnClick
               columns={columns}
               pageSize={8}
+              rowsPerPageOptions={[8, 16, 24, 32, 40]}
               checkboxSelection
             />
           </>
