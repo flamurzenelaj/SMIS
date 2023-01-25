@@ -1,0 +1,45 @@
+.app__subjects {
+    padding-top: var(--navbar-height);
+    .app__subjects-header {
+        position: relative;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        height: 35vh;
+        padding: 0 5%;
+        background-color: black;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: left 65%;
+        
+        
+        @media screen and (max-width: 700px){
+            height: 25vh;
+        }
+
+        &::before {
+            z-index: 1;
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .app__subjects__header-title {
+            z-index: 2;
+            letter-spacing: 2rem;
+            @media screen and (max-width: 700px){
+                letter-spacing: 1rem;
+            }
+        }
+    }
+
+    .app__subjects__content{
+        display: flex;
+        justify-content: center;
+    }
+
+}
+

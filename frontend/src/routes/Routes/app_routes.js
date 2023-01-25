@@ -4,6 +4,7 @@ import { RouteType } from "./route_type";
 
 import {
   Home,
+  ContactUs
 } from "../../containers";
 
 export const AppRoutes = [
@@ -12,6 +13,16 @@ export const AppRoutes = [
     type: RouteType.PUBLIC,
     path: "/",
     element: <Home />,
+  },
+  {
+    type: RouteType.PUBLIC,
+    path: "/home",
+    element: <Home />,
+  },
+  {
+    type: RouteType.PUBLIC,
+    path: "/contact-us",
+    element: <ContactUs />,
   },
   {
     type: RouteType.PUBLIC,

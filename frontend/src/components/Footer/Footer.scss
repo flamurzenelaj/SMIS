@@ -1,0 +1,37 @@
+.footer {
+    width: 100%;
+    height: 200px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10rem 0 10rem 5rem;
+
+    @media screen and (max-width: 900px){
+      align-items: center;
+      padding: 10vh;
+    }
+  
+  .socialMedia svg {
+    color: #c69a50;
+    font-size: 45px;
+    cursor: pointer;
+    list-style: none;
+    padding: 0 0 20px;
+    margin: 0;
+   }
+  
+  > p{
+    color: #9c9c9c;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+
+  > a{
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #c69a50;
+    padding: 0 0 20px;
+  }
+}

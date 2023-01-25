@@ -10,7 +10,7 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
     <div className="app__navbar app__flex">
       <h2 className="logo">SMIS</h2>
       <ul>
-        {["Home", "About Us", "Contact us"].map((item, index) => {
+        {["HOME", "CONTACT US"].map((item, index) => {
           const link = item.replace(" ", "-").toLowerCase();
           return (
             <li key={`navbar-link-${index}`}>
@@ -29,6 +29,12 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
               }}
             >
               {auth.user.role === "Admin" ? <p><Link to="/admin-dashboard">Dashboard</Link></p> : ""}
+              {auth.user.role === "Student" ? <p><Link to="/transcript">Transcript</Link></p> : ""}
+              {auth.user.role === "Student" ? <p><Link to="/exams">My Exams</Link></p> : ""}
+              {auth.user.role === "Student" ? <p><Link to="/apply-exam">Apply Exam</Link></p> : ""}
+              {auth.user.role === "Teacher" ? <p><Link to="/subjects">My Subjects</Link></p> : ""}
+              {auth.user.role === "Teacher" ? <p><Link to="/students">My Students</Link></p> : ""}
+
               <p
                 style={{
                   display: "inline-block",

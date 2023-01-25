@@ -4,11 +4,8 @@
     {
         public int Id { get; set; }
         public string Name { get; set; }
-           
-        public string Clas { get; set; }
-
         public int ECTS { get; set; }
-
+        public int TeacherId
 
     }
 }

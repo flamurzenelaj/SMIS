@@ -13,8 +13,6 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../../lib/context/AuthContext/AuthContext";
 
 
-
-
 import "./Register.scss";
 
 import {
@@ -313,12 +311,12 @@ function RegisterPage() {
             variants={inputFieldEmailVariant}
             initial="hidden"
             animate="visible"
-            value={uid}
             exit="exit"
           >
             <input
               type="text"
               name="uid"
+              value={uid}
               ref={uidRef}
               onChange={(event) => handleUidChange(event)}
               required
@@ -344,6 +342,7 @@ function RegisterPage() {
               type="password"
               id="password"
               name="pwd"
+              value={pwd}
               ref={pwdRef}
               onChange={(event) => handlePasswordChange(event)}
               required
@@ -369,6 +368,7 @@ function RegisterPage() {
               type="password"
               id="re-password"
               ref={rePwdRef}
+              value={rePwd}
               name="rePwd"
               onChange={(event) => handleRePasswordChange(event)}
               required

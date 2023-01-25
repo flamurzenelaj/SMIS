@@ -36,20 +36,84 @@ const BurgerMenu = ({ setBurgerMenu }) => {
             </Link>
           )}
         </motion.li>
-
-        <motion.li
-          initial={{ y: "-5vh", opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.5 + 0 / 10 }}
-        >
-           {auth.user.role === "Admin" ? <p onClick={() => setBurgerMenu(false)}><Link to="/admin-dashboard">Dashboard</Link></p> : ""}
-        </motion.li>
-
-        {["Home", "About Us", "Classes", "Teachers", "Contact us"].map((item, index) => {
+        {isAuthenticated && auth.user.role === "Admin" && (
+          <motion.li
+            key="1"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <p onClick={() => setBurgerMenu(false)}>
+              <Link to="/admin-dashboard">Dashboard</Link>
+            </p>
+          </motion.li>
+        )}
+        {isAuthenticated && auth.user.role === "Student" && (
+          <motion.li
+            key="2"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <p onClick={() => setBurgerMenu(false)}>
+              <Link to="/transcript">Transcript</Link>
+            </p>
+          </motion.li>
+        )}{" "}
+        {isAuthenticated && auth.user.role === "Student" && (
+          <motion.li
+            key="3"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <p onClick={() => setBurgerMenu(false)}>
+              <Link to="/exams">My Exams</Link>
+            </p>
+          </motion.li>
+        )}
+        {isAuthenticated && auth.user.role === "Student" && (
+          <motion.li
+            key="4"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <p onClick={() => setBurgerMenu(false)}>
+              <Link to="/apply-exam">Apply Exam</Link>
+            </p>
+          </motion.li>
+        )}
+        {isAuthenticated && auth.user.role === "Teacher" && (
+          <motion.li
+            key="5"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <Link onClick={() => setBurgerMenu(false)} to="/subjects">
+              My Subjects
+            </Link>
+          </motion.li>
+        )}
+        {isAuthenticated && auth.user.role === "Teacher" && (
+          <motion.li
+            key="6"
+            initial={{ y: "-5vh", opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ delay: 0.5 + 0 / 10 }}
+          >
+            <Link onClick={() => setBurgerMenu(false)} to="/students">
+              My Students
+            </Link>
+          </motion.li>
+        )}
+        {["HOME", "CONTACT US"].map((item, index) => {
           const link = item.replace(" ", "-").toLowerCase();
 
           return (
             <motion.li
+              key={index}
               initial={{ y: "-5vh", opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.5 + index / 10 }}

@@ -7,6 +7,7 @@ import { Routes } from "./routes";
 import { Navbar, BurgerMenu } from "./components";
 import { AnimatePresence } from "framer-motion";
 import { LayoutProvider } from "./lib/hooks/useLayout";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const [burgerMenu, setBurgerMenu] = useState(false);
@@ -22,7 +23,7 @@ function App() {
         <AnimatePresence exitBeforeEnter>
           <Routes />
         </AnimatePresence>
-
+        <Footer />
       </LayoutProvider>
     </AuthContextProvider>
   );
