@@ -47,22 +47,24 @@ function ContactUs() {
             <div>
               <i className="fa fa-home"></i>
               <span>
-                <h5>XYZ road, ABC building</h5>
-                <p>Chittagong,Bangladesh</p>
+                <h5>1000 Prishtine,Kosovo</h5>
+                <p>Lagjia Kalabria</p>
               </span>
             </div>
             <div>
               <i className="fa fa-phone"></i>
               <span>
-                <h5>8801866020966</h5>
+                <h5>Call Us</h5>
+                <p>+383 38 541 400</p>
+                <p>+383 38 541 400</p>
                 <p>Saturday to Thursday, at 10Am to 6PM</p>
               </span>
             </div>
             <div>
               <i className="fa fa-envelope-o"></i>
               <span>
-                <h5>showravmitra@gmail.com</h5>
-                <p>Email us</p>
+                <h5>Email Us</h5>
+                <p>info@ubt-uni.net</p>
               </span>
             </div>
           </div>
