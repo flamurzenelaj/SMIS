@@ -12,7 +12,7 @@ export default function Users() {
     {
       field: "id",
       headerName: "ID",
-      width: 20,
+      width: 100,
       renderCell: (params) => {
         <div className="userListUser">{params.row.id}</div>;
       },
@@ -44,7 +44,7 @@ export default function Users() {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 120,
       renderCell: (params) => {
         return (
           <>

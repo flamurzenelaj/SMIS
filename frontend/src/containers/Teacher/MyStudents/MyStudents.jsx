@@ -11,6 +11,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import useGetStudent from "../../../api/Student/useGetStudent";
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
+import Chatbot from "../../../components/Chatbot/Chatbot";
 
 function MyStudents() {
 
@@ -105,6 +106,7 @@ function MyStudents() {
     </Box>
     </div>
 
+    <Chatbot />
       
     </div>
   );

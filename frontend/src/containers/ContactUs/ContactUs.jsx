@@ -6,6 +6,7 @@ import {
   TEXT_FONT_WEIGHT,
   TEXT_VARIATION,
 } from "../../components/Typography/typography_enums";
+import Chatbot from "../../components/Chatbot/Chatbot";
 
 function ContactUs() {
   let contactUsBackgroundImage =
@@ -81,6 +82,7 @@ function ContactUs() {
           </div>
         </div>
       </div>
+      <Chatbot />
     </>
   );
 }

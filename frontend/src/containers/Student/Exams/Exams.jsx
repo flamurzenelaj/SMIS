@@ -1,4 +1,5 @@
 import React from 'react'
+import Chatbot from '../../../components/Chatbot/Chatbot'
 
 function Exams() {
   return (
@@ -10,6 +11,8 @@ function Exams() {
         <div className="">Exams</div>
         <div className="">Exams</div>
         <div className="">Exams</div>
+        <Chatbot />
+
         </div>
   )
 }

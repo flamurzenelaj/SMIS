@@ -5,6 +5,7 @@ import Groups2Icon from '@mui/icons-material/Groups2';
 import TravelExploreIcon from "@mui/icons-material/TravelExplore";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import AccessibilityNewIcon from '@mui/icons-material/AccessibilityNew';
+import ChatIcon from '@material-ui/icons/Chat';
 import { Link, useLocation } from "react-router-dom";
 import cs from "classnames";
 
@@ -42,6 +43,11 @@ export default function Sidebar() {
       title: "Subjects",
       icon: <MenuBookIcon className="sidebarIcon" />,
       path: "subjects",
+    },
+    {
+      title: "Chatbot Data",
+      icon: <ChatIcon className="sidebarIcon" />,
+      path: "chatbot",
     },
   ];
   return (

@@ -18,6 +18,9 @@ import CreateTeacher from "../../containers/Admin/containers/Teachers/CreateTeac
 import Subjects from "../../containers/Admin/containers/Subjects/Subjects";
 import Subject from "../../containers/Admin/containers/Subjects/Subject/Subject";
 import CreateSubject from "../../containers/Admin/containers/Subjects/CreateSubject/CreateSubject";
+import Chatbots from "../../containers/Admin/containers/Chatbots/Chatbots";
+import CreateChatbot from "../../containers/Admin/containers/Chatbots/CreateChatbot/CreateChatbot";
+import Chatbot from "../../containers/Admin/containers/Chatbots/Chatbot/Chatbot";
 
 export const AdminAppRoutes = [
   {
@@ -99,5 +102,20 @@ export const AdminAppRoutes = [
     type: RouteType.PUBLIC,
     path: "create-subject",
     element: <CreateSubject />,
+  },
+  {
+    type: RouteType.PUBLIC,
+    path: "chatbot",
+    element: <Chatbots />,
+  },
+  {
+    type: RouteType.PUBLIC,
+    path: "chatbot/:chatbotId",
+    element: <Chatbot />,
+  },
+  {
+    type: RouteType.PUBLIC,
+    path: "create-chatbot",
+    element: <CreateChatbot />,
   },
 ];

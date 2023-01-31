@@ -12,14 +12,14 @@ export default function Departments() {
     {
       field: "id",
       headerName: "ID",
-      width: 200,
+      width: 100,
       renderCell: (params) => {
         <div className="userListUser">{params.row.id}</div>;
       },
     },
     {
       field: "departmentName",
-      headerName: "DepartmentName",
+      headerName: "Department Name",
       width: 200,
       renderCell: (params) => {
         <div className="userListUser">{params.row.departmentName}</div>;
@@ -27,7 +27,7 @@ export default function Departments() {
     },
     {
       field: "departmentHead",
-      headerName: "DepartmentHead",
+      headerName: "Department Head",
       width: 200,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.departmentHead}</div>;
@@ -35,7 +35,7 @@ export default function Departments() {
     },
     {
       field: "startDate",
-      headerName: "StartDate",
+      headerName: "Start Date",
       width: 200,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.startDate}</div>;
@@ -43,8 +43,8 @@ export default function Departments() {
     },
     {
       field: "numberOfStudents",
-      headerName: "NumberOfStudents",
-      width: 200,
+      headerName: "Number Of Students",
+      width: 210,
       renderCell: (params) => {
         return <div className="userListUser">{params.row.numberOfStudents}</div>;
       },
@@ -52,7 +52,7 @@ export default function Departments() {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 120,
       renderCell: (params) => {
         return (
           <>

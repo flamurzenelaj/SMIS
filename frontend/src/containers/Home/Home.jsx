@@ -1,17 +1,21 @@
 import React from "react";
 import "./Home.scss";
 import { images } from "../../constants";
+import Chatbot from "../../components/Chatbot/Chatbot";
 
 const Home = () => {
+ 
+
   return (
     <>
+
       <div className="header">
         <div className="text-box">
           <h1>UBT – Higher Education Institution</h1>
           <p>
             “Study without desire spoils the memory, and it retains nothing that
             it takes in.”
-          <br />
+            <br />
             “A university is just a group of buildings gathered around a
             library.” “But we're a university!
           </p>
@@ -66,7 +70,6 @@ const Home = () => {
             </p>
           </div>
           <div className="facilities-col">
-            
             <img alt="img" src={images.infermiery} />
             <h3>Medical Science</h3>
             <p>
@@ -89,14 +92,14 @@ const Home = () => {
         </div>
       </div>
 
-      <div class="testimonial">
+      <div className="testimonial">
         <h1>What Our Student Says</h1>
         <p>
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatum
           debitis quia aliquam in nemo hic ullam incidunt.
         </p>
-        <div class="row">
-          <div class="testimonial-col">
+        <div className="row">
+          <div className="testimonial-col">
             <img alt="img" src={images.user1} />
             <div>
               <p>
@@ -106,14 +109,14 @@ const Home = () => {
                 vero quisquam dignissimos laudantium?
               </p>
               <h3>Eva Marie</h3>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-o"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star-o"></i>
             </div>
           </div>
-          <div class="testimonial-col">
+          <div className="testimonial-col">
             <img alt="img" src={images.user2} />
             <div>
               <p>
@@ -123,11 +126,11 @@ const Home = () => {
                 vero quisquam dignissimos laudantium?
               </p>
               <h3>Showrav Mitra</h3>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star-half-o"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star"></i>
+              <i className="fa fa-star-half-o"></i>
             </div>
           </div>
         </div>
@@ -139,6 +142,9 @@ const Home = () => {
           Contact Us
         </a>
       </div>
+
+      <Chatbot />
+
     </>
   );
 };

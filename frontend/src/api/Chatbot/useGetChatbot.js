@@ -1,10 +1,10 @@
 import useApi, { METHOD } from "../../lib/hooks/useApi";
 
 const method = METHOD.GET;
-const endpoint = "Students";
+const endpoint = "Chatbot";
 const params = {};
 
-const useGetStudent = (dependencies = []) =>
+const useGetChatbot = (dependencies = []) =>
   useApi(method, endpoint, {}, params, dependencies, true);
 
-export default useGetStudent;
+export default useGetChatbot;

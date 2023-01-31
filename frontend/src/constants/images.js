@@ -6,6 +6,7 @@ import user2 from '../assets/user2.jpg';
 import london from '../assets/london.png';
 import newyork from '../assets/newyork.png';
 import washington from '../assets/washington.png';
+import bot from '../assets/bot.png';
 
 
 export default {
@@ -17,4 +18,5 @@ export default {
     london,
     washington,
     newyork,
+    bot
 };

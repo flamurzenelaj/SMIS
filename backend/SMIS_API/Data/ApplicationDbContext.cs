@@ -10,12 +10,13 @@ namespace SMIS_API.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
         }
-    
+
         public DbSet<Department> Department { get; set; }
         public DbSet<Student> Student { get; set; }
         public DbSet<Teacher> Teacher { get; set; }
         public DbSet<Subject> Subject { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Chatbot> Chatbot { get; set; }
 
 
     }

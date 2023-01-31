@@ -11,6 +11,7 @@ import { DataGrid } from "@material-ui/data-grid";
 import useGetSubject from "../../../api/Subject/useGetSubject";
 import { Link } from "react-router-dom";
 import Box from '@mui/material/Box';
+import Chatbot from "../../../components/Chatbot/Chatbot";
 
 function MySubjects() {
     let subjectsBackgroundImage =
@@ -95,6 +96,7 @@ function MySubjects() {
     </Box>
     </div>
 
+        <Chatbot />
     </div>
   )
 }

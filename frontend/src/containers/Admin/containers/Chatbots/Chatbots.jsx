@@ -1,12 +1,12 @@
-import "./Subjects.scss";
+import "./Chatbots.scss";
 import { DataGrid } from "@material-ui/data-grid";
 import { Link } from "react-router-dom";
 import DashboardWrapper from "../../DashboardWrapper";
-import useGetSubject from "../../../../api/Subject/useGetSubject";
+import useGetChatbot from "../../../../api/Chatbot/useGetChatbot";
 import { CustomSpinner } from "../../../../components";
 
-export default function Subjects() {
-  const { loading, response: getSubjectDataRes } = useGetSubject();
+export default function Chatbots() {
+  const { loading, response: getChatbotDataRes } = useGetChatbot();
 
   const columns = [
     {
@@ -18,19 +18,19 @@ export default function Subjects() {
       },
     },
     {
-      field: "name",
-      headerName: "Name",
-      width: 200,
+      field: "question",
+      headerName: "Question",
+      width: 400,
       renderCell: (params) => {
-        <div className="userListUser">{params.row.name}</div>;
+        <div className="userListUser">{params.row.question}</div>;
       },
     },
     {
-      field: "ects",
-      headerName: "ECTS",
-      width: 200,
+      field: "response",
+      headerName: "Response",
+      width: 400,
       renderCell: (params) => {
-        return <div className="userListUser">{params.row.ects}</div>;
+        return <div className="userListUser">{params.row.response}</div>;
       },
     },
     {
@@ -40,7 +40,7 @@ export default function Subjects() {
       renderCell: (params) => {
         return (
           <>
-            <Link to={"/admin-dashboard/subject/" + params.row.id}>
+            <Link to={"/admin-dashboard/chatbot/" + params.row.id}>
               <button className="userListEdit">Edit</button>
             </Link>
           </>
@@ -57,7 +57,7 @@ export default function Subjects() {
       </DashboardWrapper>
     );
   }
-  if (getSubjectDataRes === undefined || getSubjectDataRes === {}) {
+  if (getChatbotDataRes === undefined || getChatbotDataRes === {}) {
     return (
       <DashboardWrapper>
         <div className="userList">No data</div>
@@ -74,13 +74,13 @@ export default function Subjects() {
         ) : (
           <>
             <header>
-              <span>Subjects</span>
-              <Link to={"/admin-dashboard/create-subject"}>
+              <span>Chatbot Data</span>
+              <Link to={"/admin-dashboard/create-chatbot"}>
                 <button>Create</button>
               </Link>
             </header>
             <DataGrid
-              rows={getSubjectDataRes}
+              rows={getChatbotDataRes}
               disableSelectionOnClick
               columns={columns}
               pageSize={8}
