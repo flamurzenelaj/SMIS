@@ -17,6 +17,7 @@ namespace SMIS_API.Data
         public DbSet<Subject> Subject { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Chatbot> Chatbot { get; set; }
+        public DbSet<Exam> Exams { get; set; }
 
 
     }

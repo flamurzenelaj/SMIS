@@ -49,6 +49,11 @@ export default function Sidebar() {
       icon: <ChatIcon className="sidebarIcon" />,
       path: "chatbot",
     },
+    {
+      title: "Exams",
+      icon: <ChatIcon className="sidebarIcon" />,
+      path: "exams",
+    },
   ];
   return (
     <div className="sidebar">
