@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./ContactUs.scss";
 import { Typography } from "../../components";
 import {
@@ -7,10 +7,39 @@ import {
   TEXT_VARIATION,
 } from "../../components/Typography/typography_enums";
 import Chatbot from "../../components/Chatbot/Chatbot";
+import axios from "axios";
 
 function ContactUs() {
   let contactUsBackgroundImage =
     "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8Ym9va3N8ZW58MHx8MHx8&w=1000&q=80";
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleInputChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post('https://localhost:7255/api/ContactUs', formData)
+      .then((res) => {
+        console.log(res);
+        alert("Form submitted successfully!");
+      })
+      .catch((error) => {
+        console.error(error);
+        alert("An error occurred while submitting the form.");
+      });
+  };
 
   return (
     <>
@@ -70,11 +99,11 @@ function ContactUs() {
             </div>
           </div>
           <div className="contact-col">
-            <form action="">
-              <input type="text" placeholder="Enter Your Name" required />
-              <input type="email" placeholder="Enter Your Mail" required />
-              <input type="text" placeholder="Enter Your Subject" required />
-              <textarea rows="8" placeholder="Message" required></textarea>
+            <form onSubmit={handleSubmit} action="">
+              <input type="text" placeholder="Enter Your Name" value={formData.Name} onChange={handleInputChange} required />
+              <input type="email" placeholder="Enter Your Mail" value={formData.Email} onChange={handleInputChange} required />
+              <input type="text" placeholder="Enter Your Subject" value={formData.Subject} onChange={handleInputChange} required />
+              <textarea rows="8" placeholder="Message" value={formData.Message} onChange={handleInputChange} required></textarea>
               <button type="Submit" className="hero-btn red-btn">
                 Send Message{" "}
               </button>
