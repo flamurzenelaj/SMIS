@@ -7,6 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import useGetAllTeacherData from "../../../../../api/Teacher/useGetAllTeacherData";
 import useGetTeacher from "../../../../../api/Teacher/useGetTeacher";
+import useGetSubject from "../../../../../api/Subject/useGetSubject";
 import { useState } from "react";
 
 
@@ -18,7 +19,9 @@ export default function CreateExam() {
   const dateRef = useRef(null);
 
   const { loading, response: getTeacherDataRes } = useGetTeacher();
+  const { loadingg, response: getSubjectDataRes } = useGetSubject();
   const teachers = getTeacherDataRes;
+  const subjects = getSubjectDataRes;
 
   
   // setTeachers(getTeacherDataRes);/
@@ -84,11 +87,17 @@ export default function CreateExam() {
           <div>
             <div className="newUserItem">
               <label>Subject ID</label>
-              <input ref={subjectIdRef} type="number"  />
+              <select className="newUserSelect" style={{width: "50px"}} ref={subjectIdRef}  >
+              {subjects && subjects.map((subject) => (
+                <option key={subject.id} value={subject.id}>
+                  {subject.id}
+                </option>
+              ))}
+           </select>
             </div>
             <div className="newUserItem">
               <label>Teacher ID</label>
-              <select value={teacherIdRef}  >
+              <select className="newUserSelect" style={{width: "50px"}} ref={teacherIdRef}  >
               {teachers && teachers.map((teacher) => (
                 <option key={teacher.id} value={teacher.id}>
                   {teacher.id}

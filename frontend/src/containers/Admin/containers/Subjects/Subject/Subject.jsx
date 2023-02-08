@@ -20,7 +20,6 @@ export default function Subject() {
   const thisPath = getUrlLastSegment(location.pathname);
 
   const nameRef = useRef(null);
-  const clasRef = useRef(null);
   const ectsRef = useRef(null);
   const { loading, response: data } = useGetSubjectById(thisPath, []);
 
@@ -40,11 +39,10 @@ export default function Subject() {
     const body = {
       id: data.id,
       name: nameRef.current.value,
-      clas: clasRef.current.value,
       ects: ectsRef.current.value,
     };
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
-    const res = await axios.put(`/Subjects`, body, {
+    const res = await axios.put(`/Subjects/${data.id}`, body, {
       headers: {
         "Content-Type": "application/json",
         Authorization: bearerToken,
@@ -53,7 +51,7 @@ export default function Subject() {
     console.log("STATUS", res.status);
     console.log("STATUS", res);
 
-    if (res.status === 200) {
+    if (res.status === 200 || res.status ===204) {
       toast.success("Updated.", {
         position: "top-center",
         autoClose: 3000,
@@ -63,9 +61,7 @@ export default function Subject() {
         draggable: true,
         progress: undefined,
       });
-      nameRef.current.value = "";
-      clasRef.current.value = "";
-      ectsRef.current.value = "";
+      navigate("/Admin-dashboard/Subjects")
     } else {
       toast.error("Error. Try again.", {
         position: "top-center",
@@ -118,16 +114,7 @@ export default function Subject() {
                       <input
                         type="text"
                         ref={nameRef}
-                        placeholder={data.name}
-                        className="userUpdateInput"
-                      />
-                    </div>
-                    <div className="userUpdateItem">
-                      <label>Class</label>
-                      <input
-                        type="text"
-                        ref={clasRef}
-                        placeholder={data.clas}
+                        defaultValue={data.name}
                         className="userUpdateInput"
                       />
                     </div>
@@ -136,7 +123,7 @@ export default function Subject() {
                       <input
                         type="number"
                         ref={ectsRef}
-                        placeholder={data.ects}
+                        defaultValue={data.ects}
                         className="userUpdateInput"
                       />
                     </div>

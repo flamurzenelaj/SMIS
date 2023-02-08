@@ -18,7 +18,6 @@ export default function CreateSubject() {
     const body = {
       id: 0,
       name: nameRef.current.value,
-      clas: clasRef.current.value,
       ects: ectsRef.current.value,
     };
     const bearerToken = auth.isAuthenticated ? `Bearer ${auth.token}` : null;
@@ -35,7 +34,6 @@ export default function CreateSubject() {
 
       if (res.status === 200 || res.status ===201 ) {
         nameRef.current.value = "";
-        clasRef.current.value = "";
         ectsRef.current.value = "";
         navigate("/admin-dashboard/subjects");
       } else {
@@ -72,10 +70,6 @@ export default function CreateSubject() {
             <div className="newUserItem">
               <label>Name</label>
               <input ref={nameRef} type="text"  />
-            </div>
-            <div className="newUserItem">
-              <label>Class</label>
-              <input ref={clasRef} type="text" />
             </div>
             <div className="newUserItem">
               <label>ECTS</label>

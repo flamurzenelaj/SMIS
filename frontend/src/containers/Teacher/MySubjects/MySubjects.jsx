@@ -37,14 +37,6 @@ function MySubjects() {
         },
       },
       {
-        field: "clas",
-        headerName: "Class",
-        width: 200,
-        renderCell: (params) => {
-          return <div className="userListUser">{params.row.clas}</div>;
-        },
-      },
-      {
         field: "ects",
         headerName: "ECTS",
         width: 200,

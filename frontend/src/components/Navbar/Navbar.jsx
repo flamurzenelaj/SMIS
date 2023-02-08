@@ -10,7 +10,7 @@ const Navbar = ({ burgerMenu, setBurgerMenu }) => {
     <div className="app__navbar app__flex">
       <h2 className="logo">SMIS</h2>
       <ul>
-        {["HOME", "CONTACT US"].map((item, index) => {
+        {["Home", "Contact Us"].map((item, index) => {
           const link = item.replace(" ", "-").toLowerCase();
           return (
             <li key={`navbar-link-${index}`}>
